@@ -25,21 +25,17 @@ console.log("Olá", nome, "você tem", idade, "anos")
 
 //2.
 
-let qualRoupa
-let corDoOlho
-let sexo
+let qualRoupa = "Você está de calça?"
+let corDoOlho = "Seu olho é azul?"
+let sexo = "Você é homem?"
 
-qualRoupa = prompt("Você está de calça?")
-corDoOlho = prompt("Seu olho é azul?")
-sexo = prompt("Você é homem?")
+let calca = prompt(qualRoupa)
+let azul = prompt(corDoOlho)
+let homem = prompt(sexo)
 
-let calca = qualRoupa
-let azul = corDoOlho
-let homem = sexo
-
-console.log("Você está de calça?", calca)
-console.log("Seu olho é azul?", azul)
-console.log("Você é homem?", homem)
+console.log(qualRoupa, calca)
+console.log(corDoOlho, azul)
+console.log(sexo, homem)
 
 //3.
 

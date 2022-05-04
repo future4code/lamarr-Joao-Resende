@@ -143,7 +143,7 @@ while (num !== numeroEscolhido){
 
 // 2.
 
-let numeroEscolhido = Math.floor(Math.random() * 10 + 1);
+let numeroEscolhido = Math.floor(Math.random() * 100 + 1);
 console.log("Vamos jogar!");
 
 let num = Number(prompt("Chute um número!"));

@@ -70,15 +70,15 @@ function imprimirVencedor (){
 
 // Comprar mais carta
 
-let resposta;
+let comprar = true;
 function comprarMaisCarta(){
    if (confirm(`Suas cartas são ${imprimirCartas(cartasDoUsuario)}. A carta revelada do computador é ${cartasDoComputador[0].texto}` +
    "\n" + "Deseja comprar mais uma carta?")){
-      resposta = true;
+      comprar = true;
    } else {
-      resposta = false;
+      comprar = false;
    }
-   return resposta
+   return comprar
 }
 
 // Iniciar ou não uma rodada
@@ -99,19 +99,19 @@ if (iniciarRodada) {
       pontuacaoComputador = pontuacoes(cartasDoComputador);
    }
    // Continuação do jogo
-   comprarMaisCarta()
    // Cartas do usuário (adicionar uma por vez)
-   while (resposta === true){
-      if (pontuacaoUsuario > 21){
+   while (comprar === true && pontuacaoUsuario < 21){
+      comprarMaisCarta();
+      if (comprar === true){
+         colocarCartas(cartasDoUsuario, 1);
+         pontuacaoUsuario = pontuacoes(cartasDoUsuario);
+      }         
+      if (pontuacaoUsuario > 21) {
          alert(`Suas cartas são ${imprimirCartas(cartasDoUsuario)}. Sua pontuação é ${pontuacaoUsuario}.` + 
          "\n" + `As cartas do computador são ${imprimirCartas(cartasDoComputador)}. A pontuação do computador é ${pontuacaoComputador}.` +
          "\n" + `O computador ganhou!`);
-      } else if (pontuacaoUsuario <= 21) {
-         colocarCartas(cartasDoUsuario, 1);
-         pontuacaoUsuario = pontuacoes(cartasDoUsuario);
-         comprarMaisCarta();
       }
-   }   
+   }
    // Cartas do computador
    if (pontuacaoUsuario <= 21){
       while (pontuacaoComputador < pontuacaoUsuario){

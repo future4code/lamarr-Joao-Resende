@@ -143,5 +143,27 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+    let arrayOrdenadoPorData = consultas.sort(function(a, b) {
+        if (a.dataDaConsulta.substr(6, 4) < b.dataDaConsulta.substr(6, 4)){
+            return -1;
+        } else if (a.dataDaConsulta.substr(6, 4) > b.dataDaConsulta.substr(6, 4)){
+            return 1;
+        } else {
+            if (a.dataDaConsulta.substr(3, 2) < b.dataDaConsulta.substr(3, 2)){
+                return -1;
+            } else if (a.dataDaConsulta.substr(3, 2) > b.dataDaConsulta.substr(3, 2)){
+                return 1;
+            } else {
+                if (a.dataDaConsulta.substr(0, 2) < b.dataDaConsulta.substr(0, 2)){
+                    return -1;
+                }  
+                if (a.dataDaConsulta.substr(0, 2) > b.dataDaConsulta.substr(0, 2)){
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    });
+    return arrayOrdenadoPorData;
 }

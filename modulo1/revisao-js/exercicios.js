@@ -5,24 +5,55 @@
 
 // EXERCÍCIO 01
 function retornaTamanhoArray(array) {
-   return array.length;
+    return array.length;
 }
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
-  return array.reverse();
+    // return array.reverse();
+
+    // Desafio
+    for (let i = 0; i < array.length/2; i++){
+        let primeiro = array[i];
+        let ultimo = array[array.length-(i+1)];
+        array[i] = ultimo;
+        array[array.length-(i+1)] = primeiro;
+        }
+    return array;
 }
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  return array.sort((a, b) => a - b);
+    // return array.sort((a, b) => a - b);
+
+    // Desafio
+    for (let i = 0; i < array.length; i++){
+        for (let j = 0; j < array.length; j++){
+            if (array[j] > array[j+1]){
+            let primeiro = array[j];
+            let segundo = array[j+1];
+            array[j] = segundo;
+            array[j+1] = primeiro;
+            }
+        }        
+    }
+    return array;
 }
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-    let novoArray = array.filter((valor, index, array) => {
-        return valor % 2 === 0;
-  })
+    // let novoArray = array.filter((valor, index, array) => {
+    //     return valor % 2 === 0;
+    // })
+    // return novoArray;
+
+    // Desafio
+    let novoArray = [];
+    for (let valor of array){
+        if (valor % 2 === 0){
+            novoArray.push(valor);
+        }
+    }
     return novoArray;
 }
 
@@ -36,13 +67,13 @@ function retornaNumerosParesElevadosADois(array) {
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  let valorMaior = array[0];
-  for (let valor of array){
-      if (valor > valorMaior){
-          valorMaior = valor;
-      }
-  }
-  return valorMaior;
+    let valorMaior = array[0];
+    for (let valor of array){
+        if (valor > valorMaior){
+        valorMaior = valor;
+        }
+    }
+    return valorMaior;
 }
 
 // EXERCÍCIO 07
@@ -96,12 +127,12 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.join(", ")}.`;
+    return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.join(", ")}.`;
 }
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-   return {...pessoa, nome: "ANÔNIMO"};
+    return {...pessoa, nome: "ANÔNIMO"};
 }
 
 // EXERCÍCIO 13A
@@ -135,7 +166,7 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-    let arrayOrdenadoAlfabeticamente = consultas.sort(function(a,b) {
+    let arrayOrdenadoAlfabeticamente = consultas.sort(function(a, b) {
         return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
     })
     return arrayOrdenadoAlfabeticamente;
@@ -143,27 +174,27 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-    let arrayOrdenadoPorData = consultas.sort(function(a, b) {
-        if (a.dataDaConsulta.substr(6, 4) < b.dataDaConsulta.substr(6, 4)){
+   let arrayOrdenadoPorData = consultas.sort(function(a, b) {
+    if (a.dataDaConsulta.substr(6, 4) < b.dataDaConsulta.substr(6, 4)){
+        return -1;
+    } else if (a.dataDaConsulta.substr(6, 4) > b.dataDaConsulta.substr(6, 4)){
+        return 1;
+    } else {
+        if (a.dataDaConsulta.substr(3, 2) < b.dataDaConsulta.substr(3, 2)){
             return -1;
-        } else if (a.dataDaConsulta.substr(6, 4) > b.dataDaConsulta.substr(6, 4)){
+        } else if (a.dataDaConsulta.substr(3, 2) > b.dataDaConsulta.substr(3, 2)){
             return 1;
         } else {
-            if (a.dataDaConsulta.substr(3, 2) < b.dataDaConsulta.substr(3, 2)){
+            if (a.dataDaConsulta.substr(0, 2) < b.dataDaConsulta.substr(0, 2)){
                 return -1;
-            } else if (a.dataDaConsulta.substr(3, 2) > b.dataDaConsulta.substr(3, 2)){
+            }
+            if (a.dataDaConsulta.substr(0, 2) > b.dataDaConsulta.substr(0, 2)){
                 return 1;
             } else {
-                if (a.dataDaConsulta.substr(0, 2) < b.dataDaConsulta.substr(0, 2)){
-                    return -1;
-                }  
-                if (a.dataDaConsulta.substr(0, 2) > b.dataDaConsulta.substr(0, 2)){
-                    return 1;
-                } else {
-                    return 0;
-                }
+                return 0;
             }
         }
+    }
     });
     return arrayOrdenadoPorData;
 }

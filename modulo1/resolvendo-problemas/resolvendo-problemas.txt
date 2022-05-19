@@ -1,0 +1,14 @@
+Como programadores, a interpretação e resolução de um problema são igualmente importantes.
+
+Ao nos depararmos com um problema, primeiramente devemos ler uma vez e depois separar as partes mais importantes
+do que está sendo pedido. Devemos separar quais informações são essenciais para a entrada e o que devemos fazer
+para termos a saída desejada. 
+
+Após a interpretação e separação das partes mais importantes do problema, devemos montar um fluxograma (se achar
+necessário) para ter uma visualização melhor e, depois disso, devemos pensar quais as melhores soluções dentro
+de um código na linguagem de programação. 
+
+Feito tudo isso, vamos para a IDE e tentamos decifrar o código usando as primeiras soluções que vierem na cabeça,
+e depois refinar esse código se ainda não estiver da forma mais otimizada.
+
+Pronto, problema resolvido!

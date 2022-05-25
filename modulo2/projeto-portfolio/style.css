@@ -1,0 +1,14 @@
+a {
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+.rodape {
+    color: black;
+    background-color: rgb(255,215,0);
+}
+.redes {
+    display: flex;
+    padding: 10px;
+}

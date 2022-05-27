@@ -6,22 +6,31 @@
     padding: 0;
 }
 
-/* MENU */
-header{
-    display: flex;
-    justify-content: space-between;
+html, body{
+    height: 100%;
 }
+body{
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex: 1 0 auto;
+    width: 100%;
+}
+header{
+    width: 100%;
+    max-width: 1800px;
+}
+/* MENU */
+
 .menu{
     background-color: white;
-    padding: 0;
-    position: fixed;
-    float: right;
+    display: inline;
 }
 .menu a{
     text-decoration: none;
     color: rgba(3,119,189,255);
     padding: 20px;
-    display: inline-block;
 }
 .menu a:hover{
     color: black;
@@ -29,6 +38,16 @@ header{
 #logo img{
     width: 250px;
 }
+div#logo{
+    display: inline;
+}
+
+
+
+
+
+
+
 
 
 
@@ -36,10 +55,10 @@ header{
 /* RODAPÉ */
 
 footer{
-    bottom: 0;
-    width: 100vw;
+    width: 100%;
     color: black;
     background-color: rgba(3,119,189,255);
+    flex-shrink: 0;
 }
 ul.redes {
     list-style: none;

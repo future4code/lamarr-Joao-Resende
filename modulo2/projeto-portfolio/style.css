@@ -29,7 +29,7 @@ header{
 
 .menu{
     background-color: white;
-    margin-right: 230px;
+    margin-right: 15%;
 }
 .menu a{
     text-decoration: none;
@@ -45,7 +45,7 @@ header{
     width: 230px;
 }
 #logo{
-    margin-left: 230px;
+    margin-left: 15%;
     padding-top: 10px;
 }
 #contato{
@@ -86,8 +86,8 @@ header{
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-right: 230px;
-    margin-left: 230px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .card{
     text-align: center;
@@ -121,8 +121,8 @@ h4{
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-right: 230px;
-    margin-left: 230px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .card-projeto{
     margin: 15px;
@@ -230,8 +230,8 @@ input, textarea, button{
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-right: 230px;
-    margin-left: 230px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .imagens-blackjack img{
     margin: 10px;
@@ -250,12 +250,12 @@ input, textarea, button{
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    margin-right: 230px;
-    margin-left: 230px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .imagens-javascript img{
     margin: 10px;
-    width: 600px;
+    width: 580px;
 }
 
 
@@ -272,7 +272,9 @@ input, textarea, button{
     margin-top: 50px;
     border: solid;
     border-width: 1px;
-
+}
+.imagens-loja img{
+    margin: 10px;
 }
 
 /* RODAPÉ */

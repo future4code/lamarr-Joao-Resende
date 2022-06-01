@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* CABEÇALHO */
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: mediumvioletred;
+}
+
+button{
+    padding: 1px 7px;
+    font-size: 15px;
+    font-weight: 550;
+}
+
+/* CONTEUDO */
+
+nav{
+    background-color: #f2d0e0;
+    width: 600px;
+    padding: 15px;
+}
+#logo{
+    display: flex;
+    align-items: center;
+}
+#logo img{
+    height: 22px;
+}
+#logo h1{
+    margin-left: 15px;
+    font-size: 28px;
+    font-weight: bolder;
+}
+
+main{
+    display: flex;
+}
+.item-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.logo-com-item{
+    display: flex;
+    align-items: center;
+}
+.logo-com-item img{
+    height: 25px;
+}
+.logo-com-item h2{
+    font-size: 20px;
+    margin-left: 15px;
+}
+.conteudo{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+section{
+    width: 350px;
+    margin: 15px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+section img{
+    width: 100%;
+}
+section p{
+    text-align: center;
+    padding: 10px;
+    font-size: 21px;
+}
+section h3{
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+/* RODAPE */
+footer{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: mediumvioletred;
+    justify-content: center;
+}
+footer p{
+    font-size: 1.1rem;
+    font-weight: bolder;
+}

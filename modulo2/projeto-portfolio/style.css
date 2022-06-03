@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo&family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Exo', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex: 1 0 auto;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.linha-divisoria{
+    opacity: 0.2;
+}
+/* MENU */
+
+.menu{
+    background-color: white;
+    margin-right: 15%;
+}
+.menu a{
+    text-decoration: none;
+    color: rgba(3,119,189,255);
+    font-weight: 600;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+.menu a:hover{
+    color: rgba(0,66,98,255);
+}
+#logo img{
+    width: 230px;
+}
+#logo{
+    margin-left: 15%;
+    padding-top: 10px;
+}
+#contato{
+    background-color: rgba(3,119,189,255);
+    color: white;
+}
+#contato:hover{
+    background-color: rgba(0,66,98,255);
+}
+
+
+/* CONTEÚDO */
+
+/* INDEX */
+#sobre{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+.titulo{
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+.subtitulo{
+    font-weight: 500;
+    font-size: 2rem;
+    margin-top: 5px;
+}
+.paragrafo{
+    margin-top: 30px;
+    font-size: 1.3rem;
+    margin-left: 230px;
+    margin-right: 230px;
+}
+.container1{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.card{
+    text-align: center;
+    background-color: rgb(223, 233, 245);
+    padding: 30px;
+    margin: 15px;
+    max-width: 400px;
+}
+.titulo-card{
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.img-card{
+    height: 170px;
+    margin-bottom: 20px;
+}
+h4{
+    margin: 20px;
+}
+.paragrafo-card{
+    padding: 10px;
+}
+#projetos{
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+}
+.container2{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.card-projeto{
+    margin: 15px;
+    background: rgb(223, 233, 245);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    width: 400px;
+}
+.card-projeto:hover{
+    transform: scale(1.1, 1.1);
+    transition: all 0.3s ease-out;
+}
+.card-projeto img{
+    width: 100%;
+    height: 350px;
+}
+#mensagem-final{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 30px;
+    font-size: 1.3rem;
+}
+.link-texto{
+    color: rgba(3,119,189,255);
+}
+.link-texto:hover{
+    color: rgba(0,66,98,255);
+}
+
+
+/* PÁGINA CONTATO */
+.pagina-contato{
+    text-align: center;
+}
+.paragrafo-contato{
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    margin-left: 230px;
+    margin-right: 230px;
+}
+.formulario{
+    text-align: center;
+    margin-top: 50px;
+    margin-right: 230px;
+    margin-left: 230px;
+}
+input, textarea, button{
+    border-radius: 5px;
+}
+.campo {
+    margin-bottom: 1em;
+}
+.campo label {
+    margin-bottom: 0.2em;
+    display: block;
+    padding-right: 590px;
+}
+.campo input[type="text"], .campo input[type="email"], .campo textarea {
+    padding: 0.2em;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    display: block;
+    width: 304px;
+}
+.campo input:focus, .campo textarea:focus {
+    background: rgb(220, 230, 241);
+}
+.grupo{
+    text-align: center;
+}
+.botao{
+    padding: 10px;
+    width: 100px;
+    color: white;
+    background-color: rgba(3,119,189,255);
+    border: 1px solid #555;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+.botao:hover{
+    background-color: rgba(0,66,98,255);
+}
+
+/* PÁGINA PROJETO-BLACKJACK */
+.pagina-blackjack{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+.paragrafo-projeto{
+    text-align: justify;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.imagens-blackjack{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.imagens-blackjack img{
+    margin: 10px;
+}
+
+/* PÁGINA PROJETO-REVISAOJS */
+
+.pagina-revisaojs{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+.imagens-javascript{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.imagens-javascript img{
+    margin: 10px;
+    width: 580px;
+}
+
+
+/* PÁGINA PROJETO-LOJA */
+
+.pagina-loja{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+.imagens-loja{
+    margin-top: 50px;
+    border: solid;
+    border-width: 1px;
+}
+.imagens-loja img{
+    margin: 10px;
+}
+
+/* RODAPÉ */
+
+footer{
+    width: 100%;
+    color: rgb(170, 182, 247);
+    background-color: rgba(3,119,189,255);
+    text-align: center;
+}
+#copy{
+    text-align: center;
+    margin-bottom: 20px;
+}
+#logo-rodape{
+    width: 230px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#frase-rodape{
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+.box{
+    margin-bottom: 20px;
+}
+.box a{
+    text-decoration: none;
+}
+.box .btn{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    margin: 0 5px;
+    overflow: hidden;
+    background: rgba(3,119,189,255);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-out;
+}
+.box .btn:hover{
+    width: 200px;
+}
+.box .btn .icon{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50px;
+    box-sizing: border-box;
+    line-height: 60px;
+    color: white;
+    transition: all 0.3s ease-out;
+    font-size: 25px;
+}
+.instagram:hover .icon{
+    color: #e1306c;
+}
+.facebook:hover .icon{
+    color: #4267B2;
+}
+.github:hover .icon{
+    color: #333;
+}
+.linkedin:hover .icon{
+    color: #4267B2;
+}
+.box .btn:hover  i{
+    font-size: 20px;
+    line-height: 60px;
+    transition: all 0.3s ease-out;
+}
+.box .btn.icon i{
+    color: #fff;
+}
+.box .btn span{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-left: 10px;
+    transition: all 0.5s ease-out;
+}
+.instagram:hover span{
+    color: #e1306c;
+}
+.facebook:hover span{
+    color: #4267B2;
+}
+.github:hover span{
+    color: #333;
+}
+.linkedin:hover span{
+    color: #4267B2;
+}

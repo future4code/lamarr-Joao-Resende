@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* CABEÇALHO */
+
+header{
+    background-color: #ef843a;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    justify-items: end;
+    align-items: center;
+    width: 100%;    
+}
+header h1{
+    margin: 30px 0px;
+}
+header input{
+    margin-right: 70px;
+    padding: 10px;
+    width: 100px;
+}
+
+/* CONTEÚDO */
+
+a{
+    text-decoration: none;
+}
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+    margin: 20px;
+    gap: 20px;
+}
+section{
+    border: green 0.15rem solid;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+}
+section img{
+    width: 450px;
+    height: 250px;
+}
+section h2{
+    text-align: center;
+    font-weight: 500;
+}
+
+.pagina-video{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20px 1fr;
+    justify-items: center;
+}
+video{
+    width: 100vh;
+}
+
+/* RODAPE */
+
+footer{
+    display: flex;
+    background-color: #323b3e;
+    color: #fff;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#copy{
+    font-size: 1.1rem;
+}

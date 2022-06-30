@@ -1,0 +1,7 @@
+.IconContainer {
+    display: flex;
+}
+
+.IconImage { 
+	margin-right: 5px;
+}

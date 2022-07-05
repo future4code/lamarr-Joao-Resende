@@ -1,9 +1,9 @@
 import React from 'react'
-import './style.css'
+import { IconContainer, IconImage } from './style'
 
 
 export function IconeSemContador(props) {
-	return <div className='IconContainer'>
-		<img className ='IconImage' alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
-	</div>
+	return <IconContainer>
+		<IconImage alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
+	</IconContainer>
 }

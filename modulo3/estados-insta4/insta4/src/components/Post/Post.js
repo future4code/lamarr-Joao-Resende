@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './style.css'
+import { PostContainer, PostHeader, PostFooter, PostPhoto, UserPhoto } from './style'
 
 import { IconeComContador } from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -11,9 +11,6 @@ import iconeMarcacaoPreto from '../../img/marcacao_preto.png'
 import iconeCompartilhar from '../../img/compartilhar.png'
 import { IconeSemContador } from '../IconeSemContador/IconeSemContador'
 import { SecaoCompartilhar } from '../SecaoCompartilhar/SecaoCompartilhar'
-import iconeInstagram from '../../img/instagram.png'
-import iconeFacebook from '../../img/facebook.png'
-import iconeTwitter from '../../img/twitter.png'
 
 
 function Post(props) {
@@ -67,6 +64,7 @@ function Post(props) {
     setComentando(false)
     setNumeroComentarios(numeroComentarios + 1)
     setInputComentario('')
+    console.log(`Comentário do usuário: ${inputComentario}`)
   }
 
   let iconeCurtida
@@ -93,12 +91,6 @@ function Post(props) {
     iconeMarcacao = iconeMarcacaoPreto
   } else {
     iconeMarcacao = iconeMarcacaoBranco
-  }
-
-  if (curtido) {
-    iconeCurtida = iconeCoracaoPreto
-  } else {
-    iconeCurtida = iconeCoracaoBranco
   }
 
   const onClickCompartilhar = () => {
@@ -132,15 +124,15 @@ function Post(props) {
 
 
   return (
-    <div className='PostContainer'>
-      <div className='PostHeader'>
-        <img className='UserPhoto' src={props.fotoUsuario} alt={'Imagem do usuario'} />
+    <PostContainer>
+      <PostHeader>
+        <UserPhoto src={props.fotoUsuario} alt={'Imagem do usuario'} />
         <p>{props.nomeUsuario}</p>
-      </div>
+      </PostHeader>
 
-      <img className='PostPhoto' src={props.fotoPost} alt={'Imagem do post'} />
+      <PostPhoto src={props.fotoPost} alt={'Imagem do post'} />
 
-      <div className='PostFooter'>
+      <PostFooter>
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={onClickCurtida}
@@ -162,10 +154,10 @@ function Post(props) {
           icone={iconeCompartilhar}
           onClickIcone={onClickCompartilhar}
         />
-      </div>
+      </PostFooter>
       {componenteComentario}
       {componenteCompartilhar}
-    </div>
+    </PostContainer>
   )
 }
 

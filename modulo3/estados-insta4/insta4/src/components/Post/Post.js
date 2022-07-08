@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PostContainer, PostHeader, PostFooter, PostPhoto, UserPhoto } from './style'
+import { PostContainer, PostHeader, PostFooter, PostPhoto, UserPhoto, UserProfile, DivComentario } from './style'
 
 import { IconeComContador } from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -22,6 +22,7 @@ function Post(props) {
 
   const [compartilhar, setCompartilhar] = useState(false)
 
+  const [comentario, setComentario] = useState([])
   const [inputComentario, setInputComentario] = useState('')
 
   const [inputCompartilharInstagram, setInputCompartilharInstagram] = useState('')
@@ -65,7 +66,28 @@ function Post(props) {
     setNumeroComentarios(numeroComentarios + 1)
     setInputComentario('')
     console.log(`Comentário do usuário: ${inputComentario}`)
+    const novoComentario = inputComentario
+    const novaListaDeComentarios = [...comentario, novoComentario]
+    setComentario(novaListaDeComentarios)
   }
+
+  const listaDeComentarios = comentario.map((elemento, index) => {
+    const deletarComentario = () => {
+      setNumeroComentarios(numeroComentarios - 1)
+      const novaListaDeComentarios = [...comentario]
+      const deletar = novaListaDeComentarios.findIndex((comentarioExcluido) => {
+        return comentarioExcluido === comentario
+      })
+      novaListaDeComentarios.splice(deletar, 1)
+      setComentario(novaListaDeComentarios)
+    }
+    return (
+      <DivComentario key={index}>
+        <span>{elemento}</span>
+        <button onClick={deletarComentario}><i className="fa fa-trash"></i></button>
+      </DivComentario>
+    )
+  })
 
   let iconeCurtida
 
@@ -118,18 +140,20 @@ function Post(props) {
 
   if (compartilhar) {
     componenteCompartilhar = <SecaoCompartilhar aoEnviarInstagram={aoCompartilharInstagram} onChangeComentarioInstagram={handleInputCompartilharInstagram} valueInstagram={inputCompartilharInstagram}
-      aoEnviarFacebook={aoCompartilharFacebook} onChangeComentarioFacebook={handleInputCompartilharFacebook} valueFacebook={inputCompartilharFacebook} 
-      aoEnviarTwitter={aoCompartilharTwitter} onChangeComentarioTwitter={handleInputCompartilharTwitter} valueTwitter={inputCompartilharTwitter}/>
+      aoEnviarFacebook={aoCompartilharFacebook} onChangeComentarioFacebook={handleInputCompartilharFacebook} valueFacebook={inputCompartilharFacebook}
+      aoEnviarTwitter={aoCompartilharTwitter} onChangeComentarioTwitter={handleInputCompartilharTwitter} valueTwitter={inputCompartilharTwitter} />
   }
 
 
   return (
     <PostContainer>
       <PostHeader>
-        <UserPhoto src={props.fotoUsuario} alt={'Imagem do usuario'} />
-        <p>{props.nomeUsuario}</p>
+        <UserProfile>
+          <UserPhoto src={props.fotoUsuario} alt={'Imagem do usuario'} />
+          <p>{props.nomeUsuario}</p>
+        </UserProfile>
+        <button onClick={props.delet}>X</button>
       </PostHeader>
-
       <PostPhoto src={props.fotoPost} alt={'Imagem do post'} />
 
       <PostFooter>
@@ -155,6 +179,7 @@ function Post(props) {
           onClickIcone={onClickCompartilhar}
         />
       </PostFooter>
+      {listaDeComentarios}
       {componenteComentario}
       {componenteCompartilhar}
     </PostContainer>

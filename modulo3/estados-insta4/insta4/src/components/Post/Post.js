@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './style.css'
+import { PostContainer, PostHeader, PostFooter, PostPhoto, UserPhoto, UserProfile, DivComentario } from './style'
 
 import { IconeComContador } from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -11,9 +11,6 @@ import iconeMarcacaoPreto from '../../img/marcacao_preto.png'
 import iconeCompartilhar from '../../img/compartilhar.png'
 import { IconeSemContador } from '../IconeSemContador/IconeSemContador'
 import { SecaoCompartilhar } from '../SecaoCompartilhar/SecaoCompartilhar'
-import iconeInstagram from '../../img/instagram.png'
-import iconeFacebook from '../../img/facebook.png'
-import iconeTwitter from '../../img/twitter.png'
 
 
 function Post(props) {
@@ -25,6 +22,7 @@ function Post(props) {
 
   const [compartilhar, setCompartilhar] = useState(false)
 
+  const [comentario, setComentario] = useState([])
   const [inputComentario, setInputComentario] = useState('')
 
   const [inputCompartilharInstagram, setInputCompartilharInstagram] = useState('')
@@ -67,7 +65,29 @@ function Post(props) {
     setComentando(false)
     setNumeroComentarios(numeroComentarios + 1)
     setInputComentario('')
+    console.log(`Comentário do usuário: ${inputComentario}`)
+    const novoComentario = inputComentario
+    const novaListaDeComentarios = [...comentario, novoComentario]
+    setComentario(novaListaDeComentarios)
   }
+
+  const listaDeComentarios = comentario.map((elemento, index) => {
+    const deletarComentario = () => {
+      setNumeroComentarios(numeroComentarios - 1)
+      const novaListaDeComentarios = [...comentario]
+      const deletar = novaListaDeComentarios.findIndex((comentarioExcluido) => {
+        return comentarioExcluido === comentario
+      })
+      novaListaDeComentarios.splice(deletar, 1)
+      setComentario(novaListaDeComentarios)
+    }
+    return (
+      <DivComentario key={index}>
+        <span>{elemento}</span>
+        <button onClick={deletarComentario}><i className="fa fa-trash"></i></button>
+      </DivComentario>
+    )
+  })
 
   let iconeCurtida
 
@@ -95,12 +115,6 @@ function Post(props) {
     iconeMarcacao = iconeMarcacaoBranco
   }
 
-  if (curtido) {
-    iconeCurtida = iconeCoracaoPreto
-  } else {
-    iconeCurtida = iconeCoracaoBranco
-  }
-
   const onClickCompartilhar = () => {
     setCompartilhar(!compartilhar)
     setInputCompartilharInstagram('')
@@ -126,21 +140,23 @@ function Post(props) {
 
   if (compartilhar) {
     componenteCompartilhar = <SecaoCompartilhar aoEnviarInstagram={aoCompartilharInstagram} onChangeComentarioInstagram={handleInputCompartilharInstagram} valueInstagram={inputCompartilharInstagram}
-      aoEnviarFacebook={aoCompartilharFacebook} onChangeComentarioFacebook={handleInputCompartilharFacebook} valueFacebook={inputCompartilharFacebook} 
-      aoEnviarTwitter={aoCompartilharTwitter} onChangeComentarioTwitter={handleInputCompartilharTwitter} valueTwitter={inputCompartilharTwitter}/>
+      aoEnviarFacebook={aoCompartilharFacebook} onChangeComentarioFacebook={handleInputCompartilharFacebook} valueFacebook={inputCompartilharFacebook}
+      aoEnviarTwitter={aoCompartilharTwitter} onChangeComentarioTwitter={handleInputCompartilharTwitter} valueTwitter={inputCompartilharTwitter} />
   }
 
 
   return (
-    <div className='PostContainer'>
-      <div className='PostHeader'>
-        <img className='UserPhoto' src={props.fotoUsuario} alt={'Imagem do usuario'} />
-        <p>{props.nomeUsuario}</p>
-      </div>
+    <PostContainer>
+      <PostHeader>
+        <UserProfile>
+          <UserPhoto src={props.fotoUsuario} alt={'Imagem do usuario'} />
+          <p>{props.nomeUsuario}</p>
+        </UserProfile>
+        <button onClick={props.delet}>X</button>
+      </PostHeader>
+      <PostPhoto src={props.fotoPost} alt={'Imagem do post'} />
 
-      <img className='PostPhoto' src={props.fotoPost} alt={'Imagem do post'} />
-
-      <div className='PostFooter'>
+      <PostFooter>
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={onClickCurtida}
@@ -162,10 +178,11 @@ function Post(props) {
           icone={iconeCompartilhar}
           onClickIcone={onClickCompartilhar}
         />
-      </div>
+      </PostFooter>
+      {listaDeComentarios}
       {componenteComentario}
       {componenteCompartilhar}
-    </div>
+    </PostContainer>
   )
 }
 

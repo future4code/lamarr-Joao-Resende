@@ -12,9 +12,15 @@ function App() {
   const [inputName, setInputName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
   const [usersList, setUsersList] = useState([])
+  const [userSearched, setUserSearched] = useState('')
+  const [editar, setEditar] = useState(false)
 
   function mudarTela() {
     setClick(!click)
+  }
+
+  function telaParaEditar() {
+    setEditar(!editar)
   }
 
   // Renderizar a lista de usuários
@@ -22,8 +28,8 @@ function App() {
   const listComponent = usersList.map((item, index) => {
     return (
       <Lista key={index}>
-        {item.name}
-        <button className="botao-deletar" onClick={() => deleteUsers(item.id)}>x</button>
+        <span onClick={() => telaParaEditar(item)}>{item.name}</span>
+        <button className="botao-deletar" onClick={() => deleteUsers(item)}>x</button>
       </Lista>
     )
   })
@@ -56,6 +62,19 @@ function App() {
         })
   }
 
+  const searchUsers = (e) => {
+    e.preventDefault()
+    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${userSearched}&email=`, myHeaders)
+      .then((response) => {
+        setUsersList(response.data)
+      }).catch(
+        (erro) => {
+          console.log(erro.response);
+        })
+    setUserSearched('')
+  }
+
+
   //POST
 
   const body = {
@@ -78,16 +97,22 @@ function App() {
 
   //DELETE
 
-  const deleteUsers = (id) => {
-    axios.delete(url + "/" + id, myHeaders)
-      .then(() => {
-        alert("Usuário deletado com sucesso!")
-        getAllUsers()
-      }).catch((erro) => {
-        alert("Ops! Algo deu errado!")
-        console.log(erro.response);
-      })
+  const deleteUsers = (item) => {
+    if (window.confirm(`Você tem certeza que deseja deletar o usuário ${item.name}?`)) {
+      axios.delete(url + "/" + item.id, myHeaders)
+        .then(() => {
+          alert("Usuário deletado com sucesso!")
+          getAllUsers()
+          console.log(usersList)
+        }).catch((erro) => {
+          alert("Ops! Algo deu errado!")
+          console.log(erro.response);
+        })
+    } else {
+      alert("Usuário não foi deletado.")
+    }
   }
+
 
 
   return (
@@ -108,6 +133,11 @@ function App() {
         <ListaDeUsuarios
           mudarTela={mudarTela}
           listComponent={listComponent}
+          userSearched={userSearched}
+          setUserSearched={setUserSearched}
+          searchUsers={searchUsers}
+          usersList={usersList}
+          telaParaEditar={telaParaEditar}
         />
       }
     </Form>

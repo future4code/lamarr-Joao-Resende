@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Header, Lista } from "./style";
+import { Header, Lista, MainContainer } from "./style";
 import logo from "./img/logo.png"
 import { Cadastro } from "./components/Cadastro/Cadastro";
 import { ListaDeUsuarios } from "./components/ListaDeUsuarios/ListaDeUsuarios";
@@ -13,7 +13,7 @@ function App() {
   const [inputEmail, setInputEmail] = useState('')
   const [usersList, setUsersList] = useState([])
   const [userSearched, setUserSearched] = useState('')
-  const [editar, setEditar] = useState(false)
+  const [editar, setEditar] = useState(true)
 
   function mudarTela() {
     setClick(!click)
@@ -116,7 +116,7 @@ function App() {
 
 
   return (
-    <Form>
+    <MainContainer>
       <Header>
         <img src={logo} alt='logo' />
         <h1>Labenusers</h1>
@@ -140,8 +140,8 @@ function App() {
           telaParaEditar={telaParaEditar}
         />
       }
-    </Form>
-  );
+    </MainContainer>
+  )
 }
 
 export default App;

@@ -9,7 +9,7 @@ export function ListaDeUsuarios(props) {
 
     return (
         <Container>
-            <button type="submit" onClick={props.trocarTela}>Voltar para cadastro</button>
+            <button onClick={props.trocarTela}>Voltar para cadastro</button>
             {props.listComponent}
             <div >{props.usersList.length === 0 && <span className="vazio">Nenhum usuário encontrado / cadastrado...</span>}</div>
             <div>

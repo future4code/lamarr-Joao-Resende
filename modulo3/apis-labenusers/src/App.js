@@ -13,22 +13,21 @@ function App() {
   const [inputEmail, setInputEmail] = useState('')
   const [usersList, setUsersList] = useState([])
   const [userSearched, setUserSearched] = useState('')
-  const [editar, setEditar] = useState(true)
+  const [edit, setEdit] = useState(true)
+  const [user, setUser] = useState([])
 
   function mudarTela() {
     setClick(!click)
+    setEdit(true)
   }
 
-  function telaParaEditar() {
-    setEditar(!editar)
-  }
 
   // Renderizar a lista de usuários
 
   const listComponent = usersList.map((item, index) => {
     return (
       <Lista key={index}>
-        <span onClick={() => telaParaEditar(item)}>{item.name}</span>
+        <span className="botao-editar" onClick={() => getUserById(item.id)}>{item.name}</span>
         <button className="botao-deletar" onClick={() => deleteUsers(item)}>x</button>
       </Lista>
     )
@@ -74,6 +73,17 @@ function App() {
     setUserSearched('')
   }
 
+  const getUserById = (id) => {
+    setEdit(!edit)
+    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, myHeaders)
+      .then((response) => {
+        setUser([response.data])
+      }).catch(
+        (erro) => {
+          console.log(erro.response);
+        })
+  }
+
 
   //POST
 
@@ -103,7 +113,6 @@ function App() {
         .then(() => {
           alert("Usuário deletado com sucesso!")
           getAllUsers()
-          console.log(usersList)
         }).catch((erro) => {
           alert("Ops! Algo deu errado!")
           console.log(erro.response);
@@ -137,7 +146,11 @@ function App() {
           setUserSearched={setUserSearched}
           searchUsers={searchUsers}
           usersList={usersList}
-          telaParaEditar={telaParaEditar}
+          edit={edit}
+          setEdit={setEdit}
+          getUserById={getUserById}
+          getAllUsers={getAllUsers}
+          user={user}
         />
       }
     </MainContainer>

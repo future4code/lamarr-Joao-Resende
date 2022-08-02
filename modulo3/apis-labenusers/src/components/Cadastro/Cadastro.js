@@ -1,7 +1,7 @@
 import React from "react";
 import { Campo, Container } from "./style";
 
-export function Cadastro(props) {
+export function Cadastro (props) {
 
     return (
         <Container>

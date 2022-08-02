@@ -18,7 +18,7 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 450px;
+    width: 550px;
     border-radius: 10px;
     background-color: #eeeded;
     margin: 50px auto;
@@ -45,6 +45,10 @@ export const Lista = styled.li`
         cursor: pointer;
         border: 1px solid #fe7e02;
         background-color: #fff;
+  }
+
+  .botao-editar {
+    cursor: pointer;
   }
 
 `

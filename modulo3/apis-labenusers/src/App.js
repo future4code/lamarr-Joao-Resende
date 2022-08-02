@@ -15,10 +15,19 @@ function App() {
   const [userSearched, setUserSearched] = useState('')
   const [edit, setEdit] = useState(true)
   const [user, setUser] = useState([])
+  const [open, setOpen] = useState(true)
 
   function mudarTela() {
     setClick(!click)
     setEdit(true)
+  }
+
+  function trocarInfo() {
+    setEdit(!edit)
+  }
+
+  function openForm() {
+    setOpen(!open)
   }
 
 
@@ -82,6 +91,7 @@ function App() {
         (erro) => {
           console.log(erro.response);
         })
+    setOpen(true)
   }
 
 
@@ -151,6 +161,10 @@ function App() {
           getUserById={getUserById}
           getAllUsers={getAllUsers}
           user={user}
+          trocarInfo={trocarInfo}
+          openForm={openForm}
+          open={open}
+          setOpen={setOpen}
         />
       }
     </MainContainer>

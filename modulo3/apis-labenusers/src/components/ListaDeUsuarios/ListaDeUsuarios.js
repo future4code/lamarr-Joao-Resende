@@ -6,16 +6,10 @@ import { Editar } from "../EditarUsuario/Editar";
 
 export function ListaDeUsuarios(props) {
 
-    const [open, setOpen] = useState(true)
     const [inputName, setInputName] = useState('')
     const [inputEmail, setInputEmail] = useState('')
 
-
-    function openForm() {
-        setOpen(!open)
-    }
-
-    const {user} = props
+    const { user } = props
 
     // RENDERIZAR USUÁRIO
 
@@ -49,11 +43,12 @@ export function ListaDeUsuarios(props) {
         axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, body, myHeaders)
             .then(() => {
                 alert("Usuário editado com sucesso!")
-                props.getUserById()
+                props.getUserById(id)
                 props.getAllUsers()
             }).catch(() => {
                 alert("Erro! O usuário não pôde ser editado.")
             })
+        props.setOpen(true)
         setInputName("")
         setInputEmail("")
     }
@@ -64,7 +59,7 @@ export function ListaDeUsuarios(props) {
             {props.edit ?
                 <>
                     {props.listComponent}
-                    <div >{props.usersList.length === 0 && <span className="vazio">Nenhum usuário encontrado / cadastrado...</span>}</div>
+                    <div>{props.usersList.length === 0 && <span className="vazio">Nenhum usuário encontrado / cadastrado...</span>}</div>
                     <div>
                         <input value={props.userSearched} onChange={(e) => props.setUserSearched(e.target.value)} placeholder="Digite o nome exato para busca" type='text' />
                         <button onClick={props.searchUsers}>Procurar usuário</button>
@@ -75,12 +70,12 @@ export function ListaDeUsuarios(props) {
                     inputName={inputName}
                     setInputEmail={setInputEmail}
                     setInputName={setInputName}
-                    openForm={openForm}
-                    open={open}
-                    getUserById={props.getUserById}
+                    openForm={props.openForm}
+                    open={props.open}
                     editUser={editUser}
                     userInfo={userInfo}
                     user={user}
+                    trocarInfo={props.trocarInfo}
                 />
             }
         </Container>

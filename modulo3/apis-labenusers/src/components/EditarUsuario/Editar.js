@@ -14,7 +14,7 @@ export function Editar(props) {
                     <button onClick={() => props.editUser(props.user[0].id)}>Salvar edição</button>
                 </EditForm>
             }
-            <button onClick={props.getUserById}>Voltar para lista de usuários</button>
+            <button onClick={props.trocarInfo}>Voltar para lista de usuários</button>
         </Container>
     )
 }

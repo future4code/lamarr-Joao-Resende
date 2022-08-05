@@ -11,76 +11,81 @@ export const GlobalStyle = createGlobalStyle`
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: #D3D3D3;
     min-height: 100vh;
+
+`
+
+export const Cell = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 450px;
+    margin: auto;
+    margin-top: 50px;
+    height: 780px;
 `
 
 export const Header = styled.header`
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 30px;
+    border-bottom: 1px solid #D3D3D3;
+
+    div {
+        display: flex;
+        margin: auto;
+    }
 
     img {
-        width: 75px;
+        width: 70px;
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-family: 'Varela Round', cursive;
+        font-size: 2.2rem;
         margin-left: 10px;
+    }
+
+    .red {
+        color: #de0613;
+    }
+
+    .gray {
+        color: #A9A9A9;
     }
 
 `
 
-export const Main = styled.main`
-    display: flex;
-    flex: 1;
-`
-
-export const Footer = styled.footer`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 100%;
-    position: sticky;
-    padding: 50px;
-    margin-bottom: 50px;
-
-`
-
-export const BotaoDeslike= styled.button`
+export const Users = styled.button`
         background: transparent;
         cursor: pointer;
-        border: 1px solid red;
-        border-radius: 50%; 
-        padding: 25px;
-        color: red;
-        margin-right: 100px;
+        border: none !important;
+        color: #A9A9A9;
+        margin-right: -35px;
+
+        
 
         i {
-            font-size: 40px;
-        }
-
-        :hover {
-            background-color: red;
-            color: white;
+            font-size: 30px;
         }
 
 `
 
-export const BotaoLike= styled.button`
+export const UserGroup = styled.button`
         background: transparent;
         cursor: pointer;
-        border-radius: 50%;
-        border: 1px solid green;
-        padding: 25px;
-        color: green;
+        border: none !important;
+        color: #de0613;
+        margin-left: -35px;
 
         i {
-            font-size: 40px;
+            font-size: 30px;
         }
 
-        :hover {
-            background-color: green;
-            color: white;
-        }
 `
+
+
+

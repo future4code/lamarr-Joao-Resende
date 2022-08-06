@@ -5,7 +5,8 @@ export const Buttons = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    justify-content: space-around;
+    margin-bottom: 20px;
 
 `
 
@@ -16,10 +17,9 @@ export const DeslikeButton= styled.button`
         border-radius: 50%; 
         padding: 15px 18px;
         color: red;
-        margin-right: 130px;
 
         i {
-            font-size: 35px;
+            font-size: 25px;
         }
 
         :hover {
@@ -38,7 +38,7 @@ export const LikeButton= styled.button`
         color: green;
 
         i {
-            font-size: 35px;
+            font-size: 25px;
         }
 
         :hover {
@@ -52,7 +52,7 @@ export const Card = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     width: 90%;
-    min-height: 500px;
+    height: 450px;
     margin: auto;
     margin-top: 20px;
     box-shadow: 0 0 1em black;
@@ -61,17 +61,24 @@ export const Card = styled.div`
     div {
         display: flex;
         flex-direction: column;
-        margin: 20px;
+        margin: 15px;
     }
 
     h2 {
         margin-bottom: 5px;
-        font-size: 2rem;
-
+        font-size: 1.5rem;
+        text-shadow: 0 0 3px black;
     }
 
     p {
-        font-size: 1.3rem;
+        font-size: 1rem;
+        text-shadow: 0 0 3px black;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
     }
 
 

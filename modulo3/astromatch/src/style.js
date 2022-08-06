@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Ubuntu', sans-serif;
     }
 `
 
@@ -22,31 +23,31 @@ export const Cell = styled.div`
     background-color: #FFF;
     border-radius: 7px;
     border: 1px solid black;
-    width: 450px;
+    width: 350px;
     margin: auto;
-    margin-top: 50px;
-    height: 780px;
+    height: 650px;
 `
 
 export const Header = styled.header`
     display: flex;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
     border-bottom: 1px solid #D3D3D3;
 
     div {
         display: flex;
         margin: auto;
+        cursor: pointer;
     }
 
     img {
-        width: 70px;
+        width: 50px;
     }
 
     h1 {
         font-family: 'Varela Round', cursive;
-        font-size: 2.2rem;
-        margin-left: 10px;
+        font-size: 1.8rem;
+        margin-left: 5px;
     }
 
     .red {
@@ -54,7 +55,7 @@ export const Header = styled.header`
     }
 
     .gray {
-        color: #A9A9A9;
+        color: #808080;
     }
 
 `
@@ -63,13 +64,15 @@ export const Users = styled.button`
         background: transparent;
         cursor: pointer;
         border: none !important;
-        color: #A9A9A9;
-        margin-right: -35px;
-
-        
+        color: #808080;
+       
 
         i {
-            font-size: 30px;
+            font-size: 25px;
+        }
+
+        :hover {
+            transform: scale(0.9);
         }
 
 `
@@ -78,11 +81,14 @@ export const UserGroup = styled.button`
         background: transparent;
         cursor: pointer;
         border: none !important;
-        color: #de0613;
-        margin-left: -35px;
+        color: #808080;
 
         i {
             font-size: 30px;
+        }
+
+        :hover {
+            transform: scale(0.9);
         }
 
 `

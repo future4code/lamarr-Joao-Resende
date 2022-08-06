@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Cell, Container, GlobalStyle, Header, UserGroup, Users } from './style';
 import logo from './img/logo.png'
 import MatchesList from './components/MatchesList/MatchesList';
 import Home from './components/Home/Home';
-import ClearComponent from "./components/ClearComponent/ClearComponent";
 
 
 function App() {
@@ -15,6 +13,10 @@ function App() {
     setPage(!page)
   }
 
+  const homePage = () => {
+    setPage(true)
+  }
+
 
 
   return (
@@ -23,23 +25,13 @@ function App() {
 
       <Cell>
 
-        <Header>
-          {page || <Users onClick={changePage}><i className='fas fa-users' /></Users>}
-          <div>
-            <img src={logo} alt="logo" />
-            <h1><span className='gray'>astro</span><span className='red'>match</span></h1>
-          </div>
-          {page && <UserGroup onClick={changePage}><i className='fas fa-user-friends' /></UserGroup>}
-        </Header>
-
         {page ?
-          <Home />
+          <Home changePage={changePage} homePage={homePage} />
           :
-          <MatchesList />
+          <MatchesList changePage={changePage} homePage={homePage} />
         }
 
       </Cell>
-      <ClearComponent />
     </Container>
   );
 }

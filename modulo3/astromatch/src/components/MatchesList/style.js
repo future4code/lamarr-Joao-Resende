@@ -11,13 +11,13 @@ export const ListCard = styled.div`
 
     img {
         border-radius: 50%;
-        width: 65px;
-        height: 65px;
+        width: 50px;
+        height: 50px;
         
     }
 
     span {
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 600;
         margin-left: 10px;
     }

@@ -1,18 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { goToAdminHomePage, goToListTripsPage, goToLoginPage } from "../routes/Coordinator";
+import { goToAdminHomePage, goToListTripsPage } from "../routes/Coordinator";
+import { PageButton, PageContainer } from "../style";
 
 function HomePage() {
 
     const navigate = useNavigate();
+  
 
     return (
-        <div>
+        <PageContainer>
             <h1>HomePage</h1>
-            <button onClick={() => goToListTripsPage(navigate)}>Ver Viagens</button>
-            <button onClick={() => goToLoginPage(navigate)}>Login</button>
-            <button onClick={() => goToAdminHomePage(navigate)}>Área de Admin</button>
-        </div>
+            <div>
+                <PageButton onClick={() => goToListTripsPage(navigate)}>Ver Viagens</PageButton>
+                <PageButton onClick={() => goToAdminHomePage(navigate)}>Área de Admin</PageButton>
+            </div>
+        </PageContainer>
     );
 }
 

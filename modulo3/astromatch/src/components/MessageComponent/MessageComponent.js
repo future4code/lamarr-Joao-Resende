@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Container, Input, MessageContainer } from "./style";
+import { Container, HeaderCard, HeaderChat, Input, MessageContainer } from "./style";
 
 
-function MessageComponent() {
+function MessageComponent(props) {
 
     const [inputMessage, setInputMessage] = useState('')
     const [message, setMessage] = useState([])
@@ -34,18 +34,33 @@ function MessageComponent() {
         )
     })
 
+    const profileHeader = props.arrayProfile.map((profile, index) => {
+        return (
+            <HeaderCard key={index}>
+                <img src={profile.photo} alt={profile.alt_photo} />
+                <span>{profile.name}</span>
+            </HeaderCard>
+        )
+    })
+
 
 
     return (
-        <Container onSubmit={(e) => e.preventDefault()}>
-            {messageList}
-            <Input>
-                <input type="text" placeholder="Digite uma mensagem..." value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} />
-                <button type="submit" onClick={sendMessage}>
-                    <i className="fa fa-send" />
-                </button>
-            </Input>
-        </Container>
+        <>
+            <HeaderChat>
+                <button onClick={props.switchPage}><i className='fa fa-arrow-left' /></button>
+                {profileHeader}
+            </HeaderChat>
+            <Container onSubmit={(e) => e.preventDefault()}>
+                {messageList}
+                <Input>
+                    <input type="text" placeholder="Digite uma mensagem..." value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} />
+                    <button type="submit" onClick={sendMessage}>
+                        <i className="fa fa-send" />
+                    </button>
+                </Input>
+            </Container>
+        </>
     );
 }
 

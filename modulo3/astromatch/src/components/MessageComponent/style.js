@@ -7,7 +7,7 @@ export const Container = styled.form`
     width: 100%;
     height: 550px;
     align-items: flex-start;
-
+    overflow-y: auto;
 
 `
 
@@ -52,12 +52,57 @@ export const Input = styled.div`
         border-radius: 50%;
         cursor: pointer;
         margin: 0;
-        padding: 5px;
+        padding: 8px;
         box-shadow: 1.5px 1.5px 1.5px 1px rgba(0, 0, 0, 0.2);
     }
 
     button:hover {
         opacity: 0.75;
+    }
+
+`
+
+export const HeaderChat = styled.header`
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #D3D3D3;
+
+    button {
+        background: transparent;
+        cursor: pointer;
+        border: none !important;
+        color: #808080;
+       
+        i {
+            font-size: 25px;
+        }
+
+        :hover {
+            transform: scale(0.9);
+        }
+    }
+
+`
+
+export const HeaderCard = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 30px;
+
+
+    img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        
+    }
+
+    span {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-left: 10px;
     }
 
 `

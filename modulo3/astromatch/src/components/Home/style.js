@@ -84,3 +84,30 @@ export const Card = styled.div`
 
 
 `
+
+export const ProfilesEndedDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    height: 450px;
+    margin: auto;
+    margin-top: 20px;
+    font-weight: 600;
+
+`
+
+export const Gif = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 450px;
+    margin: auto;
+    margin-top: 20px;
+
+    img {
+        width: 70px;
+    }
+`

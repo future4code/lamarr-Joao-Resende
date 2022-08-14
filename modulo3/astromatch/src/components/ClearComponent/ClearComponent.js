@@ -12,6 +12,7 @@ function ClearComponent(props) {
         axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/joao-resende/clear')
             .then(() => {
                 props.getProfileToChoose()
+                props.getMatches()
             }).catch(() => {
                 alert("Clique novamente.")
             })
@@ -19,7 +20,7 @@ function ClearComponent(props) {
 
     return (
         <ClearContainer>
-            <span>Ops, parece que não temos mais perfis para exibir! Clique no botão abaixo para começar de novo:</span>
+            <span>Se não houver mais perfis para exibir ou queira começar de novo clique no botão abaixo:</span>
             <button onClick={clear} >Limpar swipes e matches</button>
         </ClearContainer>
     );

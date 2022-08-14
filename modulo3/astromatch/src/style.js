@@ -17,6 +17,12 @@ export const Container = styled.div`
 
 `
 
+export const Main = styled.main`
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+`
+
 export const Cell = styled.div`
     display: flex;
     flex-direction: column;
@@ -24,8 +30,8 @@ export const Cell = styled.div`
     border-radius: 7px;
     border: 1px solid black;
     width: 350px;
-    margin: auto;
     height: 650px;
+    margin-bottom: 15px;
 `
 
 export const Header = styled.header`
@@ -92,6 +98,8 @@ export const UserGroup = styled.button`
         }
 
 `
+
+
 
 
 

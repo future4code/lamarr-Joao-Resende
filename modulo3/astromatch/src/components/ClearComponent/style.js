@@ -3,16 +3,12 @@ import styled from "styled-components";
 export const ClearContainer = styled.div`
     display: flex;
     flex-direction: column;
-    height: 450px;
-    margin: auto;
-    margin-top: 20px;
-    justify-content: center;
-    padding: 20px;
+    width: 350px;
     
     span {
         text-align: center;
         margin-bottom: 10px;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
     }
 
@@ -25,6 +21,8 @@ export const ClearContainer = styled.div`
         background-color: #de0613;
         padding: 5px;
         color: #fff;
+        width: 75%;
+        align-self: center;
 
         :hover {
             opacity: 0.7;

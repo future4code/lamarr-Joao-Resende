@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import { Buttons, Card, DeslikeButton, LikeButton } from "./style";
-import ClearComponent from "../ClearComponent/ClearComponent";
+import { Buttons, Card, CardContainer, DeslikeButton, Gif, LikeButton, ProfilesEndedDiv } from "./style";
 import { Header, UserGroup } from "../../style";
 import logo from '../../img/logo.png'
 
@@ -9,17 +8,10 @@ import logo from '../../img/logo.png'
 
 function Home(props) {
 
-    const [profiles, setProfiles] = useState([])
-
-    // USEEFFECT
-
-    useEffect(() => {
-        getProfileToChoose()
-    }, [])
 
     // RENDERIZAR CARD
 
-    const card = profiles.map((profile) => {
+    const card = props.profiles.map((profile) => {
         return (
             <Card style={{ backgroundImage: `url(${profile.photo})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} key={profile.id}>
                 <div>
@@ -30,22 +22,6 @@ function Home(props) {
         )
     })
 
-
-    // GET
-
-    const getProfileToChoose = () => {
-        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/joao-resende/person`)
-            .then((response) => {
-                if (response.data.profile === null) {
-                    setProfiles([])
-                } else {
-                    setProfiles([response.data.profile])
-                }
-            }).catch(
-                (erro) => {
-                    console.log(erro.response);
-                })
-    }
 
     // POST
 
@@ -62,8 +38,11 @@ function Home(props) {
                 'choice': choice
             },
             headers)
-            .then(() => {
-                getProfileToChoose()
+            .then((response) => {
+                props.getProfileToChoose()
+                if (response.data.isMatch === true) {
+                    return alert("It's a match!")
+                }
 
             }).catch(() => {
                 alert("Erro!")
@@ -80,11 +59,14 @@ function Home(props) {
                 </div>
                 <UserGroup onClick={props.changePage}><i className='fa fa-comments' /></UserGroup>
             </Header>
-            
-            {profiles.length === 0 ? <ClearComponent getProfileToChoose={getProfileToChoose} /> : card}
+
+            {props.isLoading && <Gif><img src='https://media.giphy.com/media/l4FGzFhVty9Q0cyxq/giphy.gif' alt="loading..." /></Gif>  }
+            {!props.isLoading && props.profiles && (props.profiles.length === 0 ? <ProfilesEndedDiv>Ops, parece que não temos mais perfis para exibir! Clique no botão abaixo para começar de novo.</ProfilesEndedDiv> : card) }
+            {!props.isLoading && !props.profiles && props.error}
+
             <Buttons>
-                <DeslikeButton onClick={() => choosePerson(profiles[0].id, false)}><i className='fa fa-close' /></DeslikeButton>
-                <LikeButton onClick={() => choosePerson(profiles[0].id, true)}><i className='fa fa-heart' /></LikeButton>
+                <DeslikeButton onClick={() => choosePerson(props.profiles[0].id, false)}><i className='fa fa-close' /></DeslikeButton>
+                <LikeButton onClick={() => choosePerson(props.profiles[0].id, true)}><i className='fa fa-heart' /></LikeButton>
             </Buttons>
         </>
     );

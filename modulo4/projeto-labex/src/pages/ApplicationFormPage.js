@@ -4,17 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { goBack } from "../routes/Coordinator";
 import { Campo, Form, PageButton, PageContainer } from "../style";
 import { BASE_URL } from "../constants/constants";
-import useRequestData from "../hooks/useRequestData";
+import { useForm } from "../hooks/useForm";
 
 function ApplicationFormPage() {
 
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(undefined)
-    const [error, setError] = useState(undefined)
+    const tripOptions = [
+        { value: 'Escolha uma viagem' },
 
-    const [selectedTrip, setSelectedTrip] = useState('')
-    const [selectedCountry, setSelectedCountry] = useState('')
+    ];
+
+    const countryOptions = [
+
+    ]
+
+    const [selectedTrip, setSelectedTrip] = useState(tripOptions[0].value)
+
+    const [form, onChange, clear] = useForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
+
 
     // POST
 
@@ -24,60 +32,61 @@ function ApplicationFormPage() {
         }
     }
 
-    const applyToTrip = (id, name, age, applicationText, profession, country) => {
-        setIsLoading(true)
-        axios.post(`${BASE_URL}/trips/${id}/apply`,
-            {
-                'name': name,
-                'age': age,
-                'applicationText': applicationText,
-                'profession': profession,
-                'country': country
-            },
-            headers)
+    const applyToTrip = (ev) => {
+        ev.preventDefault();
+
+        axios.post(`${BASE_URL}/trips/${id}/apply`, form, headers)
             .then(() => {
-                setIsLoading(false)
                 alert("Cadastrado com sucesso!")
 
             }).catch((err) => {
-                setIsLoading(false)
-                setError(err)
+                console.log(err)
                 alert("Erro!")
             })
+
+        clear();
     }
 
 
 
     return (
         <PageContainer>
-            <Form>
+            <Form onSubmit={applyToTrip}>
                 <h1>Inscreva-se para uma viagem</h1>
                 <Campo>
-                    <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }}>
-                        <option value={""}>Escolha uma viagem</option>
+                    <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
+                        {tripOptions.map((option, index) => {
+                            <option key={index} value={option.value}>
+                                {option.value}
+                            </option>
+                        })}
                     </select>
                 </Campo>
                 <Campo>
-                    <input placeholder="Nome" type="text" />
+                    <input name="name" value={form.name} onChange={onChange} placeholder="Nome" type="text" required />
                 </Campo>
                 <Campo>
-                    <input placeholder="Idade" type="number" />
+                    <input name="age" value={form.age} onChange={onChange} placeholder="Idade" type="number" required />
                 </Campo>
                 <Campo>
-                    <textarea rows={3} placeholder="Texto de Candidatura" type="text" />
+                    <textarea name="applicationText" value={form.applicationText} onChange={onChange} rows={3} placeholder="Texto de Candidatura" type="text" required />
                 </Campo>
                 <Campo>
-                    <input placeholder="Profissão" type="text" />
+                    <input name="profession" value={form.profession} onChange={onChange} placeholder="Profissão" type="text" required />
                 </Campo>
                 <Campo>
-                    <select name="lista-escolaridade" value={selectedCountry} onChange={(e) => { setSelectedCountry(e.target.value) }}>
-                        <option value={""}>Escolha um país</option>
+                    <select name="country" value={form.country} onChange={onChange} required>
+                        {countryOptions.map((option, index) => {
+                            <option key={index} value={option.value}>
+                                {option.value}
+                            </option>
+                        })}
                     </select>
                 </Campo>
 
                 <div>
                     <button onClick={() => goBack(navigate)}>Voltar</button>
-                    <button onClick={() => applyToTrip()}>Enviar</button>
+                    <button type="submit">Enviar</button>
                 </div>
             </Form>
         </PageContainer>

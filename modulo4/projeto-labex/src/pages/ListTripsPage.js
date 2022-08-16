@@ -31,7 +31,7 @@ function ListTripsPage() {
                 <PageButton onClick={() => goBack(navigate)}>Voltar</PageButton>
                 <PageButton onClick={() => goToApplicationFormPage(navigate)}>Formulário de Inscrição</PageButton>
             </div>
-            {isLoadingTrips && "Loading..."}
+            {isLoadingTrips && <span>Loading...</span>}
             {!isLoadingTrips && dataTrips && tripsList}
             {!isLoadingTrips && !dataTrips && errorTrips}
         </PageContainer>

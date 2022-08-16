@@ -10,7 +10,7 @@ export const Buttons = styled.div`
 
 `
 
-export const DeslikeButton= styled.button`
+export const DeslikeButton = styled.button`
         background: transparent;
         cursor: pointer;
         border: 1px solid red;
@@ -29,7 +29,7 @@ export const DeslikeButton= styled.button`
 
 `
 
-export const LikeButton= styled.button`
+export const LikeButton = styled.button`
         background: transparent;
         cursor: pointer;
         border-radius: 50%;
@@ -50,18 +50,33 @@ export const LikeButton= styled.button`
 export const Card = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     width: 90%;
     height: 450px;
     margin: auto;
     margin-top: 20px;
     box-shadow: 0 0 1em black;
     color: #fff;
+    position: relative;
+
+    span {
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(15px);
+        filter: blur(15px);
+    }
+
+    img {
+        width: 100%;
+        max-height: 100%;
+        position: absolute;
+        align-self: center;
+    }
 
     div {
-        display: flex;
-        flex-direction: column;
-        margin: 15px;
+        position: absolute;
+        margin: 13px;
+        bottom: 0;
     }
 
     h2 {

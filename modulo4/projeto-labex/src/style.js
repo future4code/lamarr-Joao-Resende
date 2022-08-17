@@ -104,7 +104,7 @@ export const TripCard = styled.ul`
 export const Form = styled.div`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 550px;
     justify-content: center;
     align-items: center;
     background-color: whitesmoke;
@@ -115,6 +115,13 @@ export const Form = styled.div`
         margin-bottom: 20px;
     }
 
+    div {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 15px;
+    }
+
     button {
         border: 1px solid orange;
         border-radius: 13px;
@@ -123,7 +130,6 @@ export const Form = styled.div`
         font-size: 1.2rem;
         font-weight: 600;
         align-self: center;
-        margin: 20px 90px 0 90px;
     }
 
     button:hover {

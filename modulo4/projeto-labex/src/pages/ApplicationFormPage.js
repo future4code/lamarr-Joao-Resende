@@ -2,22 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../routes/Coordinator";
-import { Campo, Form, PageButton, PageContainer } from "../style";
-import { BASE_URL } from "../constants/constants";
+import { Campo, Form, PageContainer } from "../style";
+import { BASE_URL, countryOptions, tripOptions } from "../constants/constants";
 import { useForm } from "../hooks/useForm";
 
 function ApplicationFormPage() {
 
     const navigate = useNavigate();
-
-    const tripOptions = [
-        { value: 'Escolha uma viagem' },
-
-    ];
-
-    const countryOptions = [
-
-    ]
 
     const [selectedTrip, setSelectedTrip] = useState(tripOptions[0].value)
 
@@ -35,7 +26,7 @@ function ApplicationFormPage() {
     const applyToTrip = (ev) => {
         ev.preventDefault();
 
-        axios.post(`${BASE_URL}/trips/${id}/apply`, form, headers)
+        axios.post(`${BASE_URL}/trips/${1}/apply`, form, headers) // COLOCAR ID 
             .then(() => {
                 alert("Cadastrado com sucesso!")
 
@@ -55,11 +46,11 @@ function ApplicationFormPage() {
                 <h1>Inscreva-se para uma viagem</h1>
                 <Campo>
                     <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
-                        {tripOptions.map((option, index) => {
+                        {tripOptions.map((option, index) => (
                             <option key={index} value={option.value}>
                                 {option.value}
                             </option>
-                        })}
+                        ))}
                     </select>
                 </Campo>
                 <Campo>
@@ -76,11 +67,11 @@ function ApplicationFormPage() {
                 </Campo>
                 <Campo>
                     <select name="country" value={form.country} onChange={onChange} required>
-                        {countryOptions.map((option, index) => {
+                        {countryOptions.map((option, index) => (
                             <option key={index} value={option.value}>
                                 {option.value}
                             </option>
-                        })}
+                        ))}
                     </select>
                 </Campo>
 

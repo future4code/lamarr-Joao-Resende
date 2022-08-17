@@ -62,8 +62,8 @@ export const Card = styled.div`
     span {
         width: 100%;
         height: 100%;
-        -webkit-filter: blur(15px);
-        filter: blur(15px);
+        -webkit-filter: blur(20px);
+        filter: blur(20px);
     }
 
     img {

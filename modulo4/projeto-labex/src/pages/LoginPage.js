@@ -64,7 +64,7 @@ function LoginPage() {
                         />
                     </Campo>
                     <div>
-                        <button onClick={() => goBack(navigate)}>Voltar</button>
+                        <button onClick={() => goToHomePage(navigate)}>Voltar</button>
                         <button type="submit">Enviar</button>
                     </div>
                 </Form>

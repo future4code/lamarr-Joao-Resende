@@ -3,17 +3,31 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { goBack, goToHomePage } from "../routes/Coordinator";
 import { Campo, Footer, Form, Header, PageContainer } from "../style";
-import { BASE_URL, countryOptions, tripOptions } from "../constants/constants";
+import { BASE_URL, countryOptions } from "../constants/constants";
 import { useForm } from "../hooks/useForm";
 import logo from "../img/logo.svg"
+import useRequestData from "../hooks/useRequestData";
 
 function ApplicationFormPage() {
 
     const navigate = useNavigate();
 
-    const [selectedTrip, setSelectedTrip] = useState(tripOptions[0].value)
+    const [selectedTrip, setSelectedTrip] = useState()
 
     const [form, onChange, clear] = useForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
+
+    const [dataTrips, isLoadingTrips, errorTrips] = useRequestData(`${BASE_URL}trips`);
+
+
+    const selectTrips = dataTrips && dataTrips.trips.map((trip) => {
+        return { value: trip.name, id: trip.id }
+    }).map((option, index) => {
+        return (
+            <option key={index} value={option}>
+                {option.value}
+            </option>
+        )
+    })
 
 
     // POST
@@ -27,7 +41,7 @@ function ApplicationFormPage() {
     const applyToTrip = (ev) => {
         ev.preventDefault();
 
-        axios.post(`${BASE_URL}/trips/${1}/apply`, form, headers) // COLOCAR ID 
+        axios.post(`${BASE_URL}trips/${(selectedTrip.id)}/apply`, form, headers)
             .then(() => {
                 alert("Cadastrado com sucesso!")
 
@@ -53,12 +67,11 @@ function ApplicationFormPage() {
                 <Form onSubmit={applyToTrip}>
                     <h1>Inscreva-se para uma viagem</h1>
                     <Campo>
-                        <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
-                            {tripOptions.map((option, index) => (
-                                <option key={index} value={option.value}>
-                                    {option.value}
-                                </option>
-                            ))}
+                        <select defaultValue={""} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
+                            <option value="">Escolha uma viagem</option>
+                            {isLoadingTrips && <option>Loading...</option>}
+                            {!isLoadingTrips && dataTrips && selectTrips}
+                            {!isLoadingTrips && !dataTrips && errorTrips}
                         </select>
                     </Campo>
                     <Campo>
@@ -74,7 +87,8 @@ function ApplicationFormPage() {
                         <input name="profession" value={form.profession} onChange={onChange} placeholder="Profissão" type="text" required />
                     </Campo>
                     <Campo>
-                        <select name="country" value={form.country} onChange={onChange} required>
+                        <select defaultValue={""} name="country" onChange={onChange} required>
+                            <option value="">Escolha um país</option>
                             {countryOptions.map((option, index) => (
                                 <option key={index} value={option.value}>
                                     {option.value}

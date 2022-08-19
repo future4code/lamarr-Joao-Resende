@@ -57,7 +57,8 @@ function CreateTripPage() {
                         <input name="name" value={form.name} onChange={onChange} placeholder="Nome da viagem" type="text" required />
                     </Campo>
                     <Campo>
-                        <select name="planet" value={form.planet} onChange={onChange} required >
+                        <select defaultValue={""} name="planet" value={form.planet} onChange={onChange} required >
+                            <option value="">Escolha um planeta</option>
                             {planetOptions.map((option, index) => (
                                 <option key={index} value={option.value}>
                                     {option.value}
@@ -72,7 +73,7 @@ function CreateTripPage() {
                         <textarea name="description" value={form.description} onChange={onChange} rows={3} placeholder="Descrição" type="text" required />
                     </Campo>
                     <Campo>
-                        <input name="durationInDays" value={form.durationInDays} onChange={onChange} placeholder="Duração em dias" type="number" required />
+                        <input name="durationInDays" onChange={onChange} placeholder="Duração em dias" type="number" required />
                     </Campo>
                     <div>
                         <button onClick={() => goBack(navigate)}>Voltar</button>

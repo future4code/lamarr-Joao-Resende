@@ -1,13 +1,7 @@
 export const BASE_URL = 'https://us-central1-labenu-apis.cloudfunctions.net/labeX/joao-resende-lamarr/'
 
-export const tripOptions = [
-    { value: "Escolha uma viagem" },
-
-];
-
 
 export const countryOptions = [
-    { value: "Escolha um país" },
     { value: "Afeganistão" },
     { value: "África do Sul" },
 	{ value: "Albânia" },
@@ -258,7 +252,6 @@ export const countryOptions = [
 ]
 
 export const planetOptions = [
-    { value: "Escolha uma planeta" },
     { value: "Júpiter" },
     { value: "Marte" },
     { value: "Mercúrio" },

@@ -22,6 +22,13 @@ export const Header = styled.header`
     align-items: center;
     background-color: whitesmoke;
     box-shadow: 0 3px 6px 0 rgb(83 82 82);
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
     
     img {
         width: 80px;
@@ -101,7 +108,7 @@ export const TripCard = styled.ul`
 
 `
 
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     width: 550px;
@@ -171,3 +178,38 @@ export const Campo = styled.div`
         border-radius: 6px;
     }
 `
+
+export const AdminTripCard = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 40px 20px;
+    cursor: pointer;
+    font-weight: 600;
+
+    :hover {
+        background-color: whitesmoke;
+    }
+
+    span {
+        margin-right: 5px;
+    }
+
+    button {
+        border: none !important;
+        background: transparent;
+        cursor: pointer;
+        font-size: 1.3rem;
+
+        :hover {
+            i {
+                color: red;
+            }
+        }
+    }
+
+`
+

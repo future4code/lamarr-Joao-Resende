@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
-import { goBack } from "../routes/Coordinator";
+import { goBack, goToHomePage } from "../routes/Coordinator";
 import axios from "axios";
-import { Campo, Form, PageContainer } from "../style";
+import { Campo, Footer, Form, Header, PageContainer } from "../style";
+import logo from "../img/logo.svg"
+import { BASE_URL } from "../constants/constants";
+
 
 function LoginPage() {
 
@@ -12,49 +15,64 @@ function LoginPage() {
     const [form, onChange, clear] = useForm({ email: "", password: "" })
 
     const login = (ev) => {
-        ev.preventDefault();
+        ev.preventDefault()
 
-        axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/joao-resende-lamarr/login",
-            form)
-            .then((response) => console.log(response.data))
-            .catch((error) => console.log(error.message))
-
+        axios.post(`${BASE_URL}login`, form)
+            .then(response => {
+                localStorage.setItem("token", response.data.token)
+                navigate("/admin/trips/list")
+            })
+            .catch((error) => {
+                alert("Erro! Usuário ou senha incorreta.")
+                console.log(error.message)
+            })
         clear();
 
     }
 
     return (
-        <PageContainer>
-            <Form onSubmit={login}>
-                <h1>Login</h1>
-                <Campo>
-                    <input
-                        name="email"
-                        placeholder="E-mail"
-                        value={form.email}
-                        onChange={onChange}
-                        type="email"
-                        required
-                    />
-                </Campo>
-                <Campo>
-                    <input
-                        name="password"
-                        placeholder="Senha"
-                        value={form.password}
-                        onChange={onChange}
-                        type="password"
-                        pattern="^.{3,}$"
-                        title="mínimo de 3 caracteres"
-                        required
-                    />
-                </Campo>
-                <div>
-                    <button onClick={() => goBack(navigate)}>Voltar</button>
-                    <button type="submit">Enviar</button>
+        <>
+            <Header>
+                <div onClick={() => goToHomePage(navigate)}>
+                    <img src={logo} alt="logo" />
+                    <h1>Labe</h1><h1 className="orange">X</h1>
                 </div>
-            </Form>
-        </PageContainer>
+            </Header>
+            <PageContainer>
+                <Form onSubmit={login}>
+                    <h1>Login</h1>
+                    <Campo>
+                        <input
+                            name="email"
+                            placeholder="E-mail"
+                            value={form.email}
+                            onChange={onChange}
+                            type="email"
+                            required
+                        />
+                    </Campo>
+                    <Campo>
+                        <input
+                            name="password"
+                            placeholder="Senha"
+                            value={form.password}
+                            onChange={onChange}
+                            type="password"
+                            pattern="^.{3,}$"
+                            title="mínimo de 3 caracteres"
+                            required
+                        />
+                    </Campo>
+                    <div>
+                        <button onClick={() => goBack(navigate)}>Voltar</button>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </Form>
+            </PageContainer>
+            <Footer>
+                <p>&copy; 2022 LabeX Ltda.</p>
+            </Footer>
+        </>
     );
 }
 

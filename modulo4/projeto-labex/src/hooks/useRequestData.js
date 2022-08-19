@@ -8,13 +8,14 @@ export const useRequestData = (url) => {
 
     useEffect(() => {
         setIsLoading(true);
-        axios.get(url).then(response => {
-            setIsLoading(false)
-            setData(response.data)
-        }).catch(err => {
-            setIsLoading(false)
-            setError(err)
-        })
+        axios.get(url)
+            .then(response => {
+                setIsLoading(false)
+                setData(response.data)
+            }).catch(err => {
+                setIsLoading(false)
+                setError(err)
+            })
     }, [])
 
     return [data, isLoading, error];

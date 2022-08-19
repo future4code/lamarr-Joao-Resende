@@ -256,3 +256,17 @@ export const countryOptions = [
     { value: "Zimbabwe" },
     { value: "Zâmbia" }
 ]
+
+export const planetOptions = [
+    { value: "Escolha uma planeta" },
+    { value: "Júpiter" },
+    { value: "Marte" },
+    { value: "Mercúrio" },
+    { value: "Netuno" },
+    { value: "Plutão" },
+    { value: "Saturno" },
+    { value: "Terra" },
+    { value: "Urano" },
+    { value: "Vênus" }
+
+];

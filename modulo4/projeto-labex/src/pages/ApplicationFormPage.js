@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { goBack } from "../routes/Coordinator";
-import { Campo, Form, PageContainer } from "../style";
+import { goBack, goToHomePage } from "../routes/Coordinator";
+import { Campo, Footer, Form, Header, PageContainer } from "../style";
 import { BASE_URL, countryOptions, tripOptions } from "../constants/constants";
 import { useForm } from "../hooks/useForm";
+import logo from "../img/logo.svg"
 
 function ApplicationFormPage() {
 
@@ -41,46 +42,58 @@ function ApplicationFormPage() {
 
 
     return (
-        <PageContainer>
-            <Form onSubmit={applyToTrip}>
-                <h1>Inscreva-se para uma viagem</h1>
-                <Campo>
-                    <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
-                        {tripOptions.map((option, index) => (
-                            <option key={index} value={option.value}>
-                                {option.value}
-                            </option>
-                        ))}
-                    </select>
-                </Campo>
-                <Campo>
-                    <input name="name" value={form.name} onChange={onChange} placeholder="Nome" type="text" required />
-                </Campo>
-                <Campo>
-                    <input name="age" value={form.age} onChange={onChange} placeholder="Idade" type="number" required />
-                </Campo>
-                <Campo>
-                    <textarea name="applicationText" value={form.applicationText} onChange={onChange} rows={3} placeholder="Texto de Candidatura" type="text" required />
-                </Campo>
-                <Campo>
-                    <input name="profession" value={form.profession} onChange={onChange} placeholder="Profissão" type="text" required />
-                </Campo>
-                <Campo>
-                    <select name="country" value={form.country} onChange={onChange} required>
-                        {countryOptions.map((option, index) => (
-                            <option key={index} value={option.value}>
-                                {option.value}
-                            </option>
-                        ))}
-                    </select>
-                </Campo>
-
-                <div>
-                    <button onClick={() => goBack(navigate)}>Voltar</button>
-                    <button type="submit">Enviar</button>
+        <>
+            <Header>
+                <div onClick={() => goToHomePage(navigate)}>
+                    <img src={logo} alt="logo" />
+                    <h1>Labe</h1><h1 className="orange">X</h1>
                 </div>
-            </Form>
-        </PageContainer>
+            </Header>
+            <PageContainer>
+                <Form onSubmit={applyToTrip}>
+                    <h1>Inscreva-se para uma viagem</h1>
+                    <Campo>
+                        <select value={selectedTrip} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
+                            {tripOptions.map((option, index) => (
+                                <option key={index} value={option.value}>
+                                    {option.value}
+                                </option>
+                            ))}
+                        </select>
+                    </Campo>
+                    <Campo>
+                        <input name="name" value={form.name} onChange={onChange} placeholder="Nome" type="text" required />
+                    </Campo>
+                    <Campo>
+                        <input name="age" value={form.age} onChange={onChange} placeholder="Idade" type="number" required />
+                    </Campo>
+                    <Campo>
+                        <textarea name="applicationText" value={form.applicationText} onChange={onChange} rows={3} placeholder="Texto de Candidatura" type="text" required />
+                    </Campo>
+                    <Campo>
+                        <input name="profession" value={form.profession} onChange={onChange} placeholder="Profissão" type="text" required />
+                    </Campo>
+                    <Campo>
+                        <select name="country" value={form.country} onChange={onChange} required>
+                            {countryOptions.map((option, index) => (
+                                <option key={index} value={option.value}>
+                                    {option.value}
+                                </option>
+                            ))}
+                        </select>
+                    </Campo>
+
+                    <div>
+                        <button onClick={() => goBack(navigate)}>Voltar</button>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </Form>
+            </PageContainer>
+
+            <Footer>
+                <p>&copy; 2022 LabeX Ltda.</p>
+            </Footer>
+        </>
     );
 }
 

@@ -15,22 +15,25 @@ function CreateTripPage() {
 
     const navigate = useNavigate();
 
+    const token = localStorage.getItem("token");
+
     const [form, onChange, clear] = useForm({ name: "", planet: "", date: "", description: "", durationInDays: "" })
 
     // POST
 
     const headers = {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            auth: token
         }
     }
 
     const createTrip = (ev) => {
         ev.preventDefault();
 
-        axios.post(`${BASE_URL}/trips`, form, headers)
+        axios.post(`${BASE_URL}trips`, form, headers)
             .then(() => {
-                alert("Criada com sucesso!")
+                alert("Viagem criada com sucesso!")
 
             }).catch((err) => {
                 console.log(err)
@@ -54,10 +57,17 @@ function CreateTripPage() {
                 <Form onSubmit={createTrip}>
                     <h1>Criar Viagem</h1>
                     <Campo>
-                        <input name="name" value={form.name} onChange={onChange} placeholder="Nome da viagem" type="text" required />
+                        <input
+                            name="name"
+                            pattern="^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{5,}$"
+                            title="Digite pelo menos 5 letras (apenas letras são permitidas)."
+                            value={form.name} onChange={onChange}
+                            placeholder="Nome da viagem"
+                            type="text"
+                            required />
                     </Campo>
                     <Campo>
-                        <select defaultValue={""} name="planet" value={form.planet} onChange={onChange} required >
+                        <select defaultValue={""} name="planet" onChange={onChange} required >
                             <option value="">Escolha um planeta</option>
                             {planetOptions.map((option, index) => (
                                 <option key={index} value={option.value}>
@@ -67,16 +77,38 @@ function CreateTripPage() {
                         </select>
                     </Campo>
                     <Campo>
-                        <input name="date" value={form.date} onChange={onChange} placeholder="Data" type="date" required />
+                        <input
+                            name="date"
+                            min={new Date().toISOString().slice(0, 10)}
+                            value={form.date}
+                            onChange={onChange}
+                            placeholder="Data"
+                            type="date"
+                            required />
                     </Campo>
                     <Campo>
-                        <textarea name="description" value={form.description} onChange={onChange} rows={3} placeholder="Descrição" type="text" required />
+                        <input
+                            name="description"
+                            pattern="^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{30,}$"
+                            title="Digite pelo menos 30 letras (apenas letras são permitidas)."
+                            value={form.description}
+                            onChange={onChange}
+                            placeholder="Descrição"
+                            type="text"
+                            required />
                     </Campo>
                     <Campo>
-                        <input name="durationInDays" onChange={onChange} placeholder="Duração em dias" type="number" required />
+                        <input
+                            name="durationInDays"
+                            min={50}
+                            value={form.durationInDays}
+                            onChange={onChange}
+                            placeholder="Duração em dias"
+                            type="number"
+                            required />
                     </Campo>
                     <div>
-                        <button onClick={() => goBack(navigate)}>Voltar</button>
+                        <button type="button" onClick={() => goBack(navigate)}>Voltar</button>
                         <button type="submit">Enviar</button>
                     </div>
                 </Form>

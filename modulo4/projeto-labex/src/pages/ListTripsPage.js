@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants/constants";
 import useRequestData from "../hooks/useRequestData";
 import { goBack, goToApplicationFormPage, goToHomePage } from "../routes/Coordinator";
-import { Footer, Header, PageButton, PageContainer, TripCard } from "../style";
+import { EmptySpan, Footer, Header, PageButton, PageContainer, TripCard } from "../style";
 import logo from "../img/logo.svg"
 
 
@@ -40,8 +40,8 @@ function ListTripsPage() {
                     <PageButton onClick={() => goBack(navigate)}>Voltar</PageButton>
                     <PageButton onClick={() => goToApplicationFormPage(navigate)}>Formulário de Inscrição</PageButton>
                 </div>
-                {isLoadingTrips && <span>Loading...</span>}
-                {!isLoadingTrips && dataTrips && tripsList}
+                {isLoadingTrips && <span>Carregando...</span>}
+                {!isLoadingTrips && dataTrips && (dataTrips.trips.length === 0 ? <EmptySpan>Nenhuma viagem cadastrada.</EmptySpan> : tripsList)}
                 {!isLoadingTrips && !dataTrips && errorTrips}
             </PageContainer>
             <Footer>

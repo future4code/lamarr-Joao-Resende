@@ -20,15 +20,14 @@ function ApplicationFormPage() {
 
 
     const selectTrips = dataTrips && dataTrips.trips.map((trip) => {
-        return { value: trip.name, id: trip.id }
+        return { name: trip.name, id: trip.id }
     }).map((option, index) => {
         return (
-            <option key={index} value={option}>
-                {option.value}
+            <option key={index} value={option.id}>
+                {option.name}
             </option>
         )
     })
-
 
     // POST
 
@@ -41,7 +40,7 @@ function ApplicationFormPage() {
     const applyToTrip = (ev) => {
         ev.preventDefault();
 
-        axios.post(`${BASE_URL}trips/${(selectedTrip.id)}/apply`, form, headers)
+        axios.post(`${BASE_URL}trips/${(selectedTrip)}/apply`, form, headers)
             .then(() => {
                 alert("Cadastrado com sucesso!")
 
@@ -75,16 +74,48 @@ function ApplicationFormPage() {
                         </select>
                     </Campo>
                     <Campo>
-                        <input name="name" value={form.name} onChange={onChange} placeholder="Nome" type="text" required />
+                        <input
+                            name="name"
+                            pattern="^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,}$"
+                            title="Digite pelo menos 3 letras (apenas letras são permitidas)."
+                            value={form.name} 
+                            onChange={onChange}
+                            placeholder="Nome"
+                            type="text"
+                            required />
                     </Campo>
                     <Campo>
-                        <input name="age" value={form.age} onChange={onChange} placeholder="Idade" type="number" required />
+                        <input
+                            name="age"
+                            min={18}
+                            value={form.age}
+                            onChange={onChange}
+                            placeholder="Idade"
+                            type="number"
+                            required />
                     </Campo>
                     <Campo>
-                        <textarea name="applicationText" value={form.applicationText} onChange={onChange} rows={3} placeholder="Texto de Candidatura" type="text" required />
+                        <input
+                            name="applicationText"
+                            pattern="^.{30,}$"
+                            title="Digite pelo menos 30 caracteres."
+                            value={form.applicationText}
+                            onChange={onChange}
+                            rows={3}
+                            placeholder="Texto de Candidatura"
+                            type="text"
+                            required />
                     </Campo>
                     <Campo>
-                        <input name="profession" value={form.profession} onChange={onChange} placeholder="Profissão" type="text" required />
+                        <input
+                            name="profession"
+                            pattern="^.{10,}$"
+                            title="Digite pelo menos 10 caracteres."
+                            value={form.profession}
+                            onChange={onChange}
+                            placeholder="Profissão"
+                            type="text"
+                            required />
                     </Campo>
                     <Campo>
                         <select defaultValue={""} name="country" onChange={onChange} required>
@@ -98,7 +129,7 @@ function ApplicationFormPage() {
                     </Campo>
 
                     <div>
-                        <button onClick={() => goBack(navigate)}>Voltar</button>
+                        <button type="button" onClick={() => goBack(navigate)}>Voltar</button>
                         <button type="submit">Enviar</button>
                     </div>
                 </Form>

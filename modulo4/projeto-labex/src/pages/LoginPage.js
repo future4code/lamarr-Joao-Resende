@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
-import { goBack, goToHomePage } from "../routes/Coordinator";
+import { goToHomePage } from "../routes/Coordinator";
 import axios from "axios";
 import { Campo, Footer, Form, Header, PageContainer } from "../style";
 import logo from "../img/logo.svg"
@@ -58,13 +58,11 @@ function LoginPage() {
                             value={form.password}
                             onChange={onChange}
                             type="password"
-                            pattern="^.{3,}$"
-                            title="mínimo de 3 caracteres"
                             required
                         />
                     </Campo>
                     <div>
-                        <button onClick={() => goToHomePage(navigate)}>Voltar</button>
+                        <button type="button" onClick={() => goToHomePage(navigate)}>Voltar</button>
                         <button type="submit">Enviar</button>
                     </div>
                 </Form>

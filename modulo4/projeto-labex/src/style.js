@@ -95,6 +95,12 @@ export const TripCard = styled.ul`
     width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 
     li {
         margin: 10px;
@@ -213,3 +219,76 @@ export const AdminTripCard = styled.div`
 
 `
 
+export const TripInfoList = styled.ul`
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 450px;
+
+    li {
+        margin: 10px;
+    }
+
+    span {
+        margin-right: 5px;
+        font-weight: bold;
+    }
+
+`
+
+export const CardButtons = styled.div`
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin: 15px;
+
+    button {
+        border: 1px solid orange;
+        border-radius: 13px;
+        padding: 8px 12px;
+        background-color: orange;
+        font-size: 1.2rem;
+        font-weight: 600;
+        align-self: center;
+    }
+
+    button:hover {
+        cursor: pointer;
+        border: 1px solid orange;
+        background-color: #fff;
+    }
+
+
+`
+
+export const TripInfoDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        align-self: center;
+    }
+
+`
+
+export const EmptySpan = styled.span`
+    margin: 10px;
+`
+
+export const TripDetailsTitles = styled.h2`
+    margin: 10px;
+    font-size: 1.7rem;
+`
+
+export const ApprovedList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 400px;
+
+    li {
+        margin: 10px;
+    }
+
+`

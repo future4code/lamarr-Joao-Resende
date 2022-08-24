@@ -1,7 +1,8 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { goBack, goToCreateTripPage, goToHomePage, goToTripDetailsPage } from "../routes/Coordinator";
-import { AdminTripCard, Footer, Header, PageButton, PageContainer } from "../style";
+import { goToCreateTripPage, goToHomePage, goToTripDetailsPage } from "../routes/Coordinator";
+import { AdminTripCard, EmptySpan, Footer, Header, PageButton, PageContainer } from "../style";
 import logo from "../img/logo.svg"
 import { BASE_URL } from "../constants/constants";
 import useRequestData from "../hooks/useRequestData";
@@ -13,19 +14,51 @@ function AdminHomePage() {
 
     const navigate = useNavigate();
 
+    const token = localStorage.getItem("token");
+
+    const [dataTrips, isLoadingTrips, errorTrips, getTrips] = useRequestData(`${BASE_URL}trips`);
+
     const logout = () => {
         localStorage.setItem("token", "")
         navigate("/login")
     }
 
-    const [dataTrips, isLoadingTrips, errorTrips] = useRequestData(`${BASE_URL}trips`);
+    // DELETE
 
-    
+    const headers = {
+        headers: {
+            'Content-Type': 'application/json',
+            auth: token
+        }
+    }
+
+    const deleteTrip = (trip) => {
+        if (window.confirm(`Você tem certeza que deseja deletar a viagem ${trip.name}?`)) {
+            axios.delete(`${BASE_URL}trips/${trip.id}`, headers)
+                .then(() => {
+                    alert("Viagem deletada!")
+                    getTrips()
+                }).catch((err) => {
+                    alert("Erro!")
+                    console.log(err.response)
+                })
+        }
+    }
+
+
+    // RENDER CARDS
+
+
     const adminTripsList = dataTrips && dataTrips.trips.map((trip) => {
         return (
-            <AdminTripCard key={trip.id} onClick={() => goToTripDetailsPage(navigate)}>
+            <AdminTripCard key={trip.id} onClick={() => goToTripDetailsPage(navigate, trip.id)}>
                 <span>{trip.name}</span>
-                <button ><i className="fa fa-trash-o"/></button>
+                <button onClick={(e) => {
+                    e.stopPropagation()
+                    deleteTrip(trip)
+                }}>
+                    <i className="fa fa-trash-o" />
+                </button>
             </AdminTripCard>
         )
     })
@@ -47,8 +80,8 @@ function AdminHomePage() {
                     <PageButton onClick={logout}>Logout</PageButton>
                 </div>
 
-                {isLoadingTrips && <span>Loading...</span>}
-                {!isLoadingTrips && dataTrips && adminTripsList}
+                {isLoadingTrips && <span>Carregando...</span>}
+                {!isLoadingTrips && dataTrips && (dataTrips.trips.length === 0 ? <EmptySpan>Nenhuma viagem cadastrada.</EmptySpan> : adminTripsList)}
                 {!isLoadingTrips && !dataTrips && errorTrips}
 
             </PageContainer>

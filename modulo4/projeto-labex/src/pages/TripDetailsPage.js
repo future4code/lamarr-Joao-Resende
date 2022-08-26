@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { goBack, goToHomePage } from "../routes/Coordinator";
-import { ApprovedList, CardButtons, EmptySpan, Footer, Header, PageButton, PageContainer, TripCard, TripDetailsTitles, TripInfoDiv, TripInfoList } from "../style";
+import { ApprovedList, Card, CardButtons, EmptySpan, Footer, Header, LoadingDiv, PageButton, PageContainer, TripDetailsTitles, TripInfoDiv, TripInfoList } from "../style";
 import logo from "../img/logo.svg"
 import { BASE_URL } from "../constants/constants";
 import useProtectedPage from "../hooks/useProtectedPage";
@@ -16,8 +16,6 @@ function TripDetailsPage() {
 
     const navigate = useNavigate();
 
-    // GET
-
     const [tripData, setTripData] = useState(undefined)
     const [isLoading, setIsLoading] = useState(undefined)
     const [error, setError] = useState(undefined)
@@ -27,7 +25,6 @@ function TripDetailsPage() {
     // AXIOS
 
     const token = localStorage.getItem("token");
-
 
     // GET
 
@@ -44,10 +41,12 @@ function TripDetailsPage() {
                     auth: token
                 }
             }).then((response) => {
-                setIsLoading(false)
-                setTripData([response.data.trip])
-                setCandidatesData(response.data.trip.candidates)
-                setApprovedCandidates(response.data.trip.approved)
+                setTimeout(() => {
+                    setIsLoading(false)
+                    setTripData([response.data.trip])
+                    setCandidatesData(response.data.trip.candidates)
+                    setApprovedCandidates(response.data.trip.approved)
+                }, 500)
             }).catch((err) => {
                 setIsLoading(false)
                 setError(err)
@@ -92,7 +91,7 @@ function TripDetailsPage() {
                     <li><span>Descrição:</span>{trip.description}</li>
                     <li><span>Planeta:</span>{trip.planet}</li>
                     <li><span>Duração:</span>{trip.durationInDays}</li>
-                    <li><span>Data:</span>{trip.date}</li>
+                    <li><span>Data:</span>{trip.date.split("-").reverse().join("/")}</li>
                 </TripInfoList>
             </TripInfoDiv>
         )
@@ -102,7 +101,7 @@ function TripDetailsPage() {
 
     const candidatesList = candidatesData && candidatesData.map((candidate) => {
         return (
-            <TripCard key={candidate.id}>
+            <Card key={candidate.id}>
                 <li><span>Nome:</span>{candidate.name}</li>
                 <li><span>Profissão:</span>{candidate.profession}</li>
                 <li><span>Idade:</span>{candidate.age}</li>
@@ -112,7 +111,7 @@ function TripDetailsPage() {
                     <button onClick={() => decideCandidate(candidate, false)}>Reprovar</button>
                     <button onClick={() => decideCandidate(candidate, true)}>Aprovar</button>
                 </CardButtons>
-            </TripCard>
+            </Card>
         )
     })
 
@@ -120,7 +119,7 @@ function TripDetailsPage() {
 
     const approvedCandidatesList = approvedCandidates && approvedCandidates.map((candidate) => {
         return (
-            <ApprovedList>
+            <ApprovedList key={candidate.id}>
                 <li>{candidate.name}</li>
             </ApprovedList>
         )
@@ -138,18 +137,18 @@ function TripDetailsPage() {
 
             <PageContainer>
 
-                {isLoading && <span>Carregando...</span>}
+                {isLoading && <LoadingDiv><img src='https://media.giphy.com/media/eNvoDhEKvUSC7euox4/giphy.gif' alt="gif" /><span>Carregando...</span></LoadingDiv>}
                 {!isLoading && tripData && tripInfo}
                 {!isLoading && !tripData && error}
                 <div>
                     <PageButton onClick={() => goBack(navigate)}>Voltar</PageButton>
                 </div>
                 <TripDetailsTitles>Candidatos Pendentes</TripDetailsTitles>
-                {isLoading && <span>Carregando...</span>}
+                {isLoading && <LoadingDiv><img src='https://media.giphy.com/media/eNvoDhEKvUSC7euox4/giphy.gif' alt="gif" /><span>Carregando...</span></LoadingDiv>}
                 {!isLoading && tripData && (candidatesData.length === 0 ? <EmptySpan>Nenhum candidato registrado.</EmptySpan> : candidatesList)}
                 {!isLoading && !tripData && error}
                 <TripDetailsTitles>Candidatos Aprovados</TripDetailsTitles>
-                {isLoading && <span>Carregando...</span>}
+                {isLoading && <LoadingDiv><img src='https://media.giphy.com/media/eNvoDhEKvUSC7euox4/giphy.gif' alt="gif" /><span>Carregando...</span></LoadingDiv>}
                 {!isLoading && tripData && (approvedCandidates.length === 0 ? <EmptySpan>Nenhum candidato aprovado.</EmptySpan> : approvedCandidatesList)}
                 {!isLoading && !tripData && error}
 

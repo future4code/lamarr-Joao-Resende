@@ -16,6 +16,8 @@ function ApplicationFormPage() {
 
     const [form, onChange, clear] = useForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
 
+    // GET
+
     const [dataTrips, isLoadingTrips, errorTrips] = useRequestData(`${BASE_URL}trips`);
 
 
@@ -68,7 +70,7 @@ function ApplicationFormPage() {
                     <Campo>
                         <select defaultValue={""} onChange={(e) => { setSelectedTrip(e.target.value) }} required >
                             <option value="">Escolha uma viagem</option>
-                            {isLoadingTrips && <option>Loading...</option>}
+                            {isLoadingTrips && <option>Carregando...</option>}
                             {!isLoadingTrips && dataTrips && selectTrips}
                             {!isLoadingTrips && !dataTrips && errorTrips}
                         </select>

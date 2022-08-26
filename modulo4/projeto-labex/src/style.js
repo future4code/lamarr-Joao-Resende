@@ -44,6 +44,18 @@ export const Header = styled.header`
         color: #db830f;
     }
 
+    @media (max-width: 650px) {
+
+        img  {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+    }
+
 `
 
 export const Footer = styled.footer`
@@ -57,6 +69,12 @@ export const Footer = styled.footer`
     text-shadow: 0 0 1px black;
     margin-top: 10px;
 
+    @media (max-width: 390px) {
+        
+        font-size: 0.85rem;
+
+    }
+
 `
 
 export const PageContainer = styled.div`
@@ -65,6 +83,22 @@ export const PageContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+
+    @media (max-width: 650px) {
+
+        margin-top: 30px;
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 390px) {
+        
+        h1 {
+            font-size: 1.6rem;
+        }
+    }
 
 `
 
@@ -82,12 +116,23 @@ export const PageButton = styled.button`
     cursor: pointer;
     border: 1px solid orange;
     background-color: #fff;
-}
+    }
+
+    @media (max-width: 650px) {
+        margin: 20px 10px;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 390px) {
+        margin: 15px 5px;
+        font-size: 1rem;
+        padding: 6px 10px;
+        
+    }
 
 `
 
-
-export const TripCard = styled.ul`
+export const Card = styled.ul`
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -101,6 +146,7 @@ export const TripCard = styled.ul`
     hyphens: auto;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    line-height: 1.3;
 
     li {
         margin: 10px;
@@ -109,6 +155,23 @@ export const TripCard = styled.ul`
     span {
         margin-right: 5px;
         font-weight: bold;
+
+    }
+
+    @media (max-width: 650px) {
+
+        margin: 12px 0;
+        width: 90%;
+
+        li {
+            margin: 7px;
+        }
+
+    }
+
+    @media (max-width: 390px) {
+        
+        font-size: 0.85rem;
 
     }
 
@@ -149,6 +212,45 @@ export const Form = styled.form`
         cursor: pointer;
         border: 1px solid orange;
         background-color: #fff;
+    }
+
+    @media (max-width: 650px) {
+
+        width: 90%;
+        margin-bottom: 20px;
+        padding: 25px;
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        div {
+            margin-top: 10px;
+        }
+
+        button {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 390px) {
+
+        padding: 20px;
+
+        h1 {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        div {
+            margin-top: 10px;
+        }
+
+        button {
+            font-size: 1rem;
+        }
     }
 
 
@@ -217,14 +319,33 @@ export const AdminTripCard = styled.div`
         }
     }
 
+    @media (max-width: 650px) {
+
+        margin: 12px 0;
+        width: 90%;
+
+    }   
+
+    @media (max-width: 390px) {
+
+        font-size: 0.85rem;
+        padding: 30px 15px;
+        
+        button {
+            font-size: 1rem;
+        }
+
+    }
+
 `
 
 export const TripInfoList = styled.ul`
     list-style: none;
     display: flex;
     flex-direction: column;
+    margin: auto;
     margin-top: 15px;
-    width: 450px;
+    width: 500px;
 
     li {
         margin: 10px;
@@ -234,6 +355,17 @@ export const TripInfoList = styled.ul`
         margin-right: 5px;
         font-weight: bold;
     }
+
+    @media (max-width: 650px) {
+        width: 100%;
+    }
+
+    @media (max-width: 390px) {
+        
+        font-size: 0.85rem;
+
+    }
+
 
 `
 
@@ -259,16 +391,46 @@ export const CardButtons = styled.div`
         background-color: #fff;
     }
 
+    @media (max-width: 650px) {
 
+        margin: 10px 0;
+
+        button {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 390px) {
+
+        margin: 7px 0;
+
+        button {
+            font-size: 1rem;
+            padding: 6px 10px;
+        }
+    }
 `
 
 export const TripInfoDiv = styled.div`
     display: flex;
     flex-direction: column;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    line-height: 1.3;
 
     h1 {
         align-self: center;
+        text-align: center;
     }
+
+    @media (max-width: 650px) {
+        width: 80%;
+    }
+
 
 `
 
@@ -279,16 +441,46 @@ export const EmptySpan = styled.span`
 export const TripDetailsTitles = styled.h2`
     margin: 10px;
     font-size: 1.7rem;
+
+    @media (max-width: 650px) {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 390px) {
+        font-size: 1.3rem;
+    }
 `
 
 export const ApprovedList = styled.ul`
     display: flex;
     flex-direction: column;
     margin-top: 15px;
-    width: 400px;
+    width: 450px;
 
     li {
-        margin: 10px;
+        margin-bottom: 10px;
     }
 
+    @media (max-width: 650px) {
+        width: 70%;
+    }
+
+    @media (max-width: 390px) {
+        
+        font-size: 0.85rem;
+
+    }
+
+`
+
+export const LoadingDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    img {
+        width: 60px;
+    }
+    
 `

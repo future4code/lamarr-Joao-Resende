@@ -89,8 +89,8 @@ function CreateTripPage() {
                     <Campo>
                         <input
                             name="description"
-                            pattern="^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{30,}$"
-                            title="Digite pelo menos 30 letras (apenas letras são permitidas)."
+                            pattern="^.{30,}$"
+                            title="Digite pelo menos 30 caracteres."
                             value={form.description}
                             onChange={onChange}
                             placeholder="Descrição"

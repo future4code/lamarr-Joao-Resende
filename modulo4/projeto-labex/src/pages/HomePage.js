@@ -18,6 +18,7 @@ function HomePage() {
                 </div>
             </Header>
             <PageContainer>
+                <h1>Menu Principal</h1>
                 <div>
                     <PageButton onClick={() => goToListTripsPage(navigate)}>Ver Viagens</PageButton>
                     <PageButton onClick={() => goToAdminHomePage(navigate)}>Área de Admin</PageButton>

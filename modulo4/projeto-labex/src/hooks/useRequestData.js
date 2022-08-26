@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export const useRequestData = (url) => {
@@ -14,8 +14,10 @@ export const useRequestData = (url) => {
         setIsLoading(true);
         axios.get(url)
             .then(response => {
-                setIsLoading(false)
-                setData(response.data)
+                setTimeout(() => {
+                    setIsLoading(false)
+                    setData(response.data)
+                }, 1000)
             }).catch(err => {
                 setIsLoading(false)
                 setError(err)

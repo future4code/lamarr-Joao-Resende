@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { goToCreateTripPage, goToHomePage, goToTripDetailsPage } from "../routes/Coordinator";
-import { AdminTripCard, EmptySpan, Footer, Header, PageButton, PageContainer } from "../style";
+import { AdminTripCard, EmptySpan, Footer, Header, LoadingDiv, PageButton, PageContainer } from "../style";
 import logo from "../img/logo.svg"
 import { BASE_URL } from "../constants/constants";
 import useRequestData from "../hooks/useRequestData";
@@ -80,7 +80,7 @@ function AdminHomePage() {
                     <PageButton onClick={logout}>Logout</PageButton>
                 </div>
 
-                {isLoadingTrips && <span>Carregando...</span>}
+                {isLoadingTrips && <LoadingDiv><img src='https://media.giphy.com/media/eNvoDhEKvUSC7euox4/giphy.gif' alt="gif" /><span>Carregando...</span></LoadingDiv>}
                 {!isLoadingTrips && dataTrips && (dataTrips.trips.length === 0 ? <EmptySpan>Nenhuma viagem cadastrada.</EmptySpan> : adminTripsList)}
                 {!isLoadingTrips && !dataTrips && errorTrips}
 

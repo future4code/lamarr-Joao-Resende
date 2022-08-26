@@ -14,6 +14,8 @@ function LoginPage() {
 
     const [form, onChange, clear] = useForm({ email: "", password: "" })
 
+    // POST
+
     const login = (ev) => {
         ev.preventDefault()
 
@@ -22,12 +24,11 @@ function LoginPage() {
                 localStorage.setItem("token", response.data.token)
                 navigate("/admin/trips/list")
             })
-            .catch((error) => {
+            .catch((err) => {
                 alert("Erro! Usuário ou senha incorreta.")
-                console.log(error.message)
+                console.log(err.message)
             })
         clear();
-
     }
 
     return (

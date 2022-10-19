@@ -1,10 +1,10 @@
-type ObjEstatisticas = {
+type Estatisticas = {
     maior: number,
     menor: number,
     media: number
 }
 
-function obterEstatisticas(numeros: number[]): ObjEstatisticas {
+function obterEstatisticas(numeros: number[]): Estatisticas {
 
     const numerosOrdenados: number[] = numeros.sort(
         (a, b) => a - b
@@ -25,4 +25,7 @@ function obterEstatisticas(numeros: number[]): ObjEstatisticas {
     return estatisticas
 }
 
-type AmostraDeDados = number[] & ObjEstatisticas;
+type AmostraDeDados = {
+    numeros: number[],
+    obterEstatisticas: (numeros: number[]) => Estatisticas
+}

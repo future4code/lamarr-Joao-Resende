@@ -1,0 +1,9 @@
+POST http://localhost:3003/users/create
+Content-Type: application/json
+
+{
+  "name": "Gabi",
+  "nickname": "ga",
+  "email": "gabi0@ethereal.email",
+  "zipcode": "30840300"
+}

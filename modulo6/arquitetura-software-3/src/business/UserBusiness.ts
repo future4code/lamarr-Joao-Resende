@@ -1,9 +1,9 @@
 import { UserDatabase } from "../data/UserDatabase"
-import { v4 as generateId } from 'uuid'
 import { User } from "../model/User"
 import { UserInputDTO } from "../model/userDTO"
 import { CustomError } from "../error/CustomError"
 import { InvalidEmail, InvalidPassword } from "../error/UserErrors"
+import { generateId } from "../services/idGenerator"
 
 export class UserBusiness {
   async create(input: UserInputDTO): Promise<void> {

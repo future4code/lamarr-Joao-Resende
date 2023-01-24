@@ -1,9 +1,9 @@
-import { v4 as generateId } from 'uuid'
 import { MovieDatabase } from "../data/MovieDatabase"
 import { CustomError } from '../error/CustomError'
 import { InvalidDescription, InvalidTitle } from '../error/MovieErrors'
 import { Movie } from '../model/Movie'
 import { MovieInputDTO } from '../model/movieDTO'
+import { generateId } from "../services/idGenerator"
 
 export class MovieBusiness {
   async create(input: MovieInputDTO): Promise<void> {

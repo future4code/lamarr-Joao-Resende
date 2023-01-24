@@ -1,0 +1,15 @@
+### CREATE USER
+POST http://localhost:3003/createUser 
+Content-Type: application/json
+
+{
+    "name": "Pedro",
+    "email": "pedro@email.com",
+    "password": "123456"
+}
+
+### GET ALL USERS
+GET http://localhost:3003/all
+
+### DELETE USER
+DELETE http://localhost:3003/1673998498211

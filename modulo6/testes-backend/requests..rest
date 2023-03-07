@@ -1,0 +1,3 @@
+### GET USER BY ID
+
+GET http://localhost:3003/users/profile/1

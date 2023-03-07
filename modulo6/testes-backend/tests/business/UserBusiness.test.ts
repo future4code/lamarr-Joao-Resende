@@ -18,7 +18,6 @@ describe("getUserById", () => {
     }
   })
 
-
   test("Should return respective user when id is registered", async () => {
     expect.assertions(2)
 

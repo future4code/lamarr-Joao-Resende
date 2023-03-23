@@ -1,0 +1,18 @@
+{
+  "name": "complexidade-algoritmos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "exercise1": "clear && tsnd --transpile-only --ignore-watch node_modules ./src/linear",
+    "exercise2": "clear && tsnd --transpile-only --ignore-watch node_modules ./src/polynomial",
+    "exercise3": "clear && tsnd --transpile-only --ignore-watch node_modules ./src/logarithmic",
+    "exercise4": "clear && tsnd --transpile-only --ignore-watch node_modules ./src/exponential"
+  },
+  "author": "Labenu",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.3.0",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  }
+}
